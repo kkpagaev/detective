@@ -131,8 +131,5 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     <p>
       Cursor coordinates: {coordinates.x}, {coordinates.y}
     </p>
-    <p onClick={() => setState({ ...state, foo: (state.foo ?? 0) + 1 })}>
-      state: {state.foo}
-    </p>
   </div>
 }

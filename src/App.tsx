@@ -1,21 +1,21 @@
 import './App.css'
-import sanyaImage from './assets/sanya.svg'
 import { MapComponent, MapPopup } from './Map'
 import { AppContextProvider } from './context/AppContextProvider'
 import { mapEntries } from './mapEntries'
 import officeMap from "./assets/office.png"
+import { SideBar } from './SideBar'
 
 function App() {
   return (
     <>
       <AppContextProvider>
-<MapPopup
-    image={sanyaImage}
-    title="Керівник IT відділу"
-    content="content"
-  />
-        <div className="bg-gray-100 p-8 h-screen">
-          <MapComponent mapEntries={mapEntries} imageUrl={officeMap}/>
+        <div className='container m-auto grid grid-cols-3'> 
+          <div className=''> 
+            <SideBar />
+          </div>
+          <div className="bg-gray-100 p-8 col-span-2 h-screen">
+            <MapComponent mapEntries={mapEntries} imageUrl={officeMap}/>
+          </div>
         </div>
       </AppContextProvider>
     </>
