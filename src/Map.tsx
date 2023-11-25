@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import officeMap from "./assets/office.png"
 import { useAppContext } from "./context/app-context";
+import { mapEntries } from "./mapEntries";
 
 // float 0 to 1
 type Coordinates = {
@@ -8,34 +9,55 @@ type Coordinates = {
   y: number
 }
 
-const MapDot = (props = { x: 0, y: 0 } as Coordinates) => {
+export type MapEntry = {
+  coordinates: Coordinates,
+
+  popup: PopupProps
+
+  name: string
+}
+
+const MapDot = (props: MapEntry) => {
+  const coordinates = props.coordinates
+
   const [popupOpen, setPopupOpen] = useState(false);
   const handleMouseClick = () => {
     setPopupOpen(!popupOpen);
   }
 
   return <div>
-    <div className="absolute w-10 h-10 rounded-full bg-red-500" style={{
-      left: `calc(${props.x * 100}% - 1.25rem)`,
-      top: `calc(${props.y * 100}% - 1.25rem)`,
-    }}  onClick={handleMouseClick}/>
+    <div className="absolute justify-center" style={{
+      left: `calc(${coordinates.x * 100}% - 1.25rem)`,
+      top: `calc(${coordinates.y * 100}% - 1.25rem)`,
+    }}>
+      <div className="p-2 relative bg-gray-50" style={{
+        left: "calc(-50% + 1.25rem)",
+      }}>{props.name}</div>
+      <div className="w-10 h-10 mt-1 rounded-full bg-red-500" style={{
+      }} onClick={handleMouseClick} />
+      </div>
     <div style={{
       visibility: popupOpen ? 'visible' : 'hidden',
-      left: `calc(${props.x * 100}% - 18rem)`,
-      top: `calc(${props.y * 100}%)`,
-    }} className="absolute" onMouseEnter={() => setPopupOpen(true)} >
-      <MapPopup />
+      left: `calc(${coordinates.x * 100}% - 12rem)`,
+      top: `calc(${coordinates.y * 100}% + 3rem)`,
+    }} className="absolute z-50" onMouseEnter={() => setPopupOpen(true)} onMouseLeave={() => setPopupOpen(false)} >
+      <MapPopup {...props.popup} />
     </div>
   </div>
 }
 
-const MapPopup = () => {
-  return <div className="transition-all max-w-xl p-8 gap-8 text-lg bg-gray-100 border-gray-500 border border-10">
+
+type PopupProps = {
+  title: string,
+  content: string
+}
+const MapPopup = (props: PopupProps) => {
+  return <div className="transition-all w-96 p-8 gap-8 text-lg bg-gray-100 border-gray-500 border border-10">
     <h3 className="text-center font-bold">
-      Hello
+      {props.title}
     </h3>
     <p>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      {props.content}
     </p>
   </div>
 }
@@ -46,9 +68,8 @@ type Props = {
 export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: officeMap }) => {
   const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const ref = useRef<HTMLImageElement>(null);
-  const {state, setState} = useAppContext();
+  const { state, setState } = useAppContext();
 
-  
   const [width, setWidth] = useState(1);
   const [height, setHeight] = useState(1);
   const [loaded, setLoaded] = useState(false);
@@ -85,11 +106,21 @@ export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: offic
 
   return <div>
     <div className="relative">
-      <MapDot x={coordinates.x} y={coordinates.y} />
+      {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
+      <MapDot coordinates={coordinates} popup={{ title: 'title', content: 'content' }} name="test" />
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {
-      navigator.clipboard.writeText(`(${coordinates.x}, ${coordinates.y})`);
+      navigator.clipboard.writeText(`{
+  coordinates: {
+    x: ${coordinates.x},
+    y: ${coordinates.y}
+  },
+  popup: {
+    title: 'title',
+    content: 'content'
+  }
+}`)
     }}
       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     >
@@ -98,7 +129,7 @@ export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: offic
     <p>
       Cursor coordinates: {coordinates.x}, {coordinates.y}
     </p>
-    <p onClick={() => setState({...state, foo: (state.foo ?? 0) + 1})}>
+    <p onClick={() => setState({ ...state, foo: (state.foo ?? 0) + 1 })}>
       state: {state.foo}
     </p>
   </div>
