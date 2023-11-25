@@ -34,13 +34,14 @@ export const MapDot = (props: MapEntry) => {
       <button className="w-10 h-10 mt-1 rounded-full bg-red-500" style={{
       }} onClick={handleMouseClick} />
     </div>
-    <div style={{
-      visibility: popupOpen ? 'visible' : 'hidden',
-      left: `calc(${coordinates.x * 100}% - 12rem)`,
-      top: `calc(${coordinates.y * 100}% + 3rem)`,
-    }} className="absolute z-50" onMouseEnter={() => setPopupOpen(true)} onMouseLeave={() => setPopupOpen(false)} >
-      {props.popup}
-    </div>
+    {popupOpen ?
+      <div style={{
+        left: `calc(${coordinates.x * 100}% - 12rem)`,
+        top: `calc(${coordinates.y * 100}% + 3rem)`,
+      }} className="absolute z-50" onMouseEnter={() => setPopupOpen(true)} onMouseLeave={() => setPopupOpen(false)} >
+        {props.popup}
+      </div> : null
+    }
   </div>
 }
 
