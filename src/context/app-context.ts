@@ -1,7 +1,9 @@
 import { createContext, useContext } from "react";
 
 export type AppState = {
-  foo?: number
+  level: number
+  points: number
+  leads: Array<string>
 }
 
 interface AppContextData {
@@ -9,13 +11,18 @@ interface AppContextData {
   setState: (state: AppState) => void
 }
 
+export const defaultState = {
+  level: 1,
+  points: 0,
+  leads: []
+}
+
 export const AppContext = createContext<AppContextData>({
-  state: {
-    foo: 0
-  },
+  state: JSON.parse(JSON.stringify(defaultState)),
   setState: (state) => {
     console.log(state);
   }
 });
+
 
 export const useAppContext = () => useContext(AppContext);

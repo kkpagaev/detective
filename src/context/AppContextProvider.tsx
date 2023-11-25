@@ -1,10 +1,8 @@
 import { PropsWithChildren, useEffect, useState } from "react";
-import { AppContext, AppState } from "./app-context";
+import { AppContext, AppState, defaultState } from "./app-context";
 
 export const AppContextProvider = ({ children }: PropsWithChildren) => {
-  const [state, setState] = useState<AppState>({
-    foo: 0
-  });
+  const [state, setState] = useState<AppState>(JSON.parse(JSON.stringify(defaultState)));
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -22,7 +20,7 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
     if (storedState) {
       setState(JSON.parse(storedState));
     } else {
-      setState({});
+      setState(JSON.parse(JSON.stringify(defaultState)));
     }
     setLoaded(true);
   }, []);
