@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import officeMap from "./assets/office.png"
+import { useAppContext } from "./context/app-context";
 
 // float 0 to 1
 type Coordinates = {
@@ -45,6 +46,7 @@ type Props = {
 export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: officeMap }) => {
   const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const ref = useRef<HTMLImageElement>(null);
+  const {state, setState} = useAppContext();
 
   
   const [width, setWidth] = useState(1);
@@ -95,6 +97,9 @@ export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: offic
     </button>
     <p>
       Cursor coordinates: {coordinates.x}, {coordinates.y}
+    </p>
+    <p onClick={() => setState({...state, foo: (state.foo ?? 0) + 1})}>
+      state: {state.foo}
     </p>
   </div>
 }
