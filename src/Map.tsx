@@ -33,7 +33,7 @@ export const MapDot = (props: MapEntry) => {
       }}>{props.name}</div>
       <button className="w-10 h-10 mt-1 rounded-full bg-red-500" style={{
       }} onClick={handleMouseClick} />
-      </div>
+    </div>
     <div style={{
       visibility: popupOpen ? 'visible' : 'hidden',
       left: `calc(${coordinates.x * 100}% - 12rem)`,
@@ -109,7 +109,7 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     <div className="relative">
       {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
       <MapDot coordinates={coordinates} popup={
-      <MapPopup {...{ title: 'title', content: 'content' }} /> } name="test" />
+        <MapPopup {...{ title: 'title', content: 'content' }} />} name="test" />
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {

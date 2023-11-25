@@ -4,8 +4,8 @@ import sanyaImage from './assets/sanya.svg'
 export const mapEntries: Array<MapEntry> = [{
   name: 'Керівник',
   coordinates: {
-    x: 0.2785480984340045,
-    y: 0.1077018633540372
+    x: 0.3575965245564779,
+    y: 0.07811847470620872
   },
   popup: <MapPopup
     image={sanyaImage}

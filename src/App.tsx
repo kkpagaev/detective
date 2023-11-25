@@ -1,8 +1,8 @@
 import './App.css'
-import { MapComponent, MapPopup } from './Map'
+import { MapComponent } from './Map'
 import { AppContextProvider } from './context/AppContextProvider'
 import { mapEntries } from './mapEntries'
-import officeMap from "./assets/office.png"
+import officeMap from "./assets/office2.png"
 import { SideBar } from './SideBar'
 
 function App() {

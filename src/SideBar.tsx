@@ -13,8 +13,8 @@ export const SideBar = () => {
   //   setState({ ...state, level });
   // }
 
-  return <div className="h-full bg-gray-100 border-gray-500 border border-10">
-    <div className="flex justify-center">
+  return <div className="h-full p-10 bg-gray-200 border-gray-500 border border-10">
+    <div className="flex justify-center text-lg">
       Sidebar
     </div>
     {open && <div className="flex justify-center">
