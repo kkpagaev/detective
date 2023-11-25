@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import officeMap from "./assets/office.png"
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
-import { mapEntries } from "./mapEntries";
 
 // float 0 to 1
 type Coordinates = {
@@ -12,12 +10,12 @@ type Coordinates = {
 export type MapEntry = {
   coordinates: Coordinates,
 
-  popup: PopupProps
+  popup: ReactNode,
 
   name: string
 }
 
-const MapDot = (props: MapEntry) => {
+export const MapDot = (props: MapEntry) => {
   const coordinates = props.coordinates
 
   const [popupOpen, setPopupOpen] = useState(false);
@@ -30,10 +28,10 @@ const MapDot = (props: MapEntry) => {
       left: `calc(${coordinates.x * 100}% - 1.25rem)`,
       top: `calc(${coordinates.y * 100}% - 1.25rem)`,
     }}>
-      <div className="p-2 relative bg-gray-50" style={{
+      <div className="pr-2 pl-2 text-center relative bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
-      <div className="w-10 h-10 mt-1 rounded-full bg-red-500" style={{
+      <button className="w-10 h-10 mt-1 rounded-full bg-red-500" style={{
       }} onClick={handleMouseClick} />
       </div>
     <div style={{
@@ -41,7 +39,7 @@ const MapDot = (props: MapEntry) => {
       left: `calc(${coordinates.x * 100}% - 12rem)`,
       top: `calc(${coordinates.y * 100}% + 3rem)`,
     }} className="absolute z-50" onMouseEnter={() => setPopupOpen(true)} onMouseLeave={() => setPopupOpen(false)} >
-      <MapPopup {...props.popup} />
+      {props.popup}
     </div>
   </div>
 }
@@ -49,13 +47,15 @@ const MapDot = (props: MapEntry) => {
 
 type PopupProps = {
   title: string,
-  content: string
+  content: string,
+  image?: string
 }
-const MapPopup = (props: PopupProps) => {
-  return <div className="transition-all w-96 p-8 gap-8 text-lg bg-gray-100 border-gray-500 border border-10">
+export const MapPopup = (props: PopupProps) => {
+  return <div className="transition-all w-96 p-8 flex flex-col gap-4 text-lg bg-gray-100 border-gray-500 border border-10">
     <h3 className="text-center font-bold">
       {props.title}
     </h3>
+    {props.image && <img className="w-1/2 m-auto" src={props.image} />}
     <p>
       {props.content}
     </p>
@@ -63,9 +63,10 @@ const MapPopup = (props: PopupProps) => {
 }
 
 type Props = {
-  imageUrl: string
+  imageUrl: string,
+  mapEntries: Array<MapEntry>
 }
-export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: officeMap }) => {
+export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
   const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const ref = useRef<HTMLImageElement>(null);
   const { state, setState } = useAppContext();
@@ -107,7 +108,8 @@ export const MapComponent = ({ imageUrl = officeMap }: Props = { imageUrl: offic
   return <div>
     <div className="relative">
       {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
-      <MapDot coordinates={coordinates} popup={{ title: 'title', content: 'content' }} name="test" />
+      <MapDot coordinates={coordinates} popup={
+      <MapPopup {...{ title: 'title', content: 'content' }} /> } name="test" />
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {
