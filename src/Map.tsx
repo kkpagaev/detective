@@ -69,7 +69,6 @@ type Props = {
 export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
   const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const ref = useRef<HTMLImageElement>(null);
-  const { state, setState } = useAppContext();
 
   const [width, setWidth] = useState(1);
   const [height, setHeight] = useState(1);
@@ -97,7 +96,6 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
 
   const handleMouseClick = (e: any) => {
     const rect = e.target.getBoundingClientRect();
-    console.log(width, height);
 
     const x = (e.clientX - rect.left) / width;
     const y = (e.clientY - rect.top) / height;
@@ -113,16 +111,12 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {
-      navigator.clipboard.writeText(`{
+      navigator.clipboard.writeText(`
   coordinates: {
     x: ${coordinates.x},
     y: ${coordinates.y}
   },
-  popup: {
-    title: 'title',
-    content: 'content'
-  }
-}`)
+`)
     }}
       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     >
