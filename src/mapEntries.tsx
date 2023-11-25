@@ -1,61 +1,104 @@
 import { MapEntry, MapPopup } from "./Map";
-import sanyaImage from './assets/sanya.svg'
+import sanyaImage from './assets/sanya.svg';
+import maxImage from './assets/max.svg';
+import petroImage from './assets/petro.svg';
+import juliyaImage from './assets/juliya.svg';
+import sofaImage from './assets/sofa.svg';
+import victorImage from './assets/victor.svg';
+import annaImage from './assets/anna.svg';
 
-export const mapEntries: Array<MapEntry> = [{
-  name: 'Керівник',
-  coordinates: {
-    x: 0.3575965245564779,
-    y: 0.07811847470620872
-  },
-  popup: <MapPopup
-    image={sanyaImage}
-    title="Олександр"
-    content="Керівник айті відділу (7 років) - Давайте назвемо його Олександром. Має великий досвід роботи в компанії, можливо, має повний доступ до інформаційних систем."
-  />
-},
-{
-  name: '2',
-  coordinates: {
-    x: 0.22706935123042504,
-    y: 0.8592132505175983
-  },
-  popup: <MapPopup
-    title="title"
-    content="content"
-  />
-},
-  {
-  name: '2',
-  coordinates: {
-    x: 0.4161073825503356,
-    y: 0.15320910973084886
-  },
-  popup: <MapPopup
-    title="title"
-    content="content"
-  />
-},
-  {
-  name: '2',
-  coordinates: {
-    x: 0.8959731543624161,
-    y: 0.13043478260869565
-  },
-  popup: <MapPopup
-    title="title"
-    content="content"
-  />
-},
-  {
-  name: '2',
-  coordinates: {
-    x: 0.875995449374289,
-    y: 0.6421052631578947
-  },
-  popup: <MapPopup
-    title="title"
-    content="content"
-  />
-}
-
+export const mapEntries: Array<Array<MapEntry>> = [
+  [
+    {
+      name: 'Кер. IT відділу',
+      coordinates: {
+        x: 0.3575965245564779,
+        y: 0.07811847470620872
+      },
+      color: "emerald",
+      popup: <MapPopup
+        image={sanyaImage}
+        title="Олександр"
+        content="Керівник айті відділу (7 років). Має великий досвід роботи в компанії, можливо, має повний доступ до інформаційних систем."
+      />
+    },
+    {
+      name: 'Кер. відділу продажів',
+      coordinates: {
+        x: 0.6062559410646388,
+        y: 0.6256983240223464
+      },
+      color: "yellow",
+      popup: <MapPopup
+        image={petroImage}
+        title="Петро"
+        content="Керівник відділу продажів (2 роки). Має свій власний відділ, але можливо має деякі привілеї або доступи."
+      />
+    },
+    {
+      name: 'Розробник',
+      coordinates: {
+        x: 0.4351532794676806,
+        y: 0.39664804469273746
+      },
+      color: "red",
+      popup: <MapPopup
+        image={maxImage}
+        title="Максим"
+        content="Розробник (2 роки роботи). Він працює в компанії протягом достатнього часу, щоб отримати доступ до системи. Відомо, що він має доступ до серверної зони, де відбуваються важливі операції."
+      />
+    },
+    {
+      name: 'Охоронець',
+      coordinates: {
+        x: 0.7836957382762991,
+        y: 0.4506517690875233
+      },
+      color: "blue",
+      popup: <MapPopup
+        image={victorImage}
+        title="Віктор"
+        content="Охоронець (працює кілька днів). Ймовірно, він може бути відговідальним за фізичну безпеку, але його знання про технічні питання обмежене."
+      />
+    },
+    {
+      name: 'Маркетолог',
+      coordinates: {
+        x: 0.24884149239543726,
+        y: 0.34823091247672255
+      },
+      color: "orange",
+      popup: <MapPopup
+        image={sofaImage}
+        title="Софія"
+        content="Маркетолог (3 роки). Хоча вона не має прямого доступу до технічних деталей, може використовувати свої знання для звернення до співробітників."
+      />
+    },
+    {
+      name: 'Розробниця',
+      coordinates: {
+        x: 0.2615157636248416,
+        y: 0.6350093109869647
+      },
+      color: "sky",
+      popup: <MapPopup
+        image={annaImage}
+        title="Анна"
+        content="Розробниця (1.5 місяці) - Новачок. Хоча вона працює недавно, вона може використовувати свій статус новачка для отримання доступу до певних систем."
+      />
+    },
+    {
+      name: 'Тестувальниця',
+      coordinates: {
+        x: 0.5859771070975919,
+        y: 0.40037243947858475
+      },
+      color: "rose",
+      popup: <MapPopup
+        image={juliyaImage}
+        title="Юлія"
+        content="Тестувальниця (1 рік). Можливо, вона має обмежений доступ до деяких систем, але варто врахувати її в контексті, що може мати значення."
+      />
+    },
+  ]
 ]

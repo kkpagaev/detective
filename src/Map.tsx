@@ -12,11 +12,26 @@ export type MapEntry = {
 
   popup: ReactNode,
 
-  name: string
+  name: string,
+
+  color: string
 }
 
 export const MapDot = (props: MapEntry) => {
-  const coordinates = props.coordinates
+  const coordinates = props.coordinates;
+
+  const color = props.color ? props.color : 'black';
+
+  const colorVariants : any = {
+    blue: 'bg-blue-500',
+    sky: 'bg-sky-600',
+    red: 'bg-red-500',
+    yellow: 'bg-yellow-400',
+    rose: 'bg-rose-300',
+    emerald: 'bg-emerald-300',
+    orange: 'bg-orange-400',
+    black: 'bg-black',
+  }
 
   const [popupOpen, setPopupOpen] = useState(false);
   const handleMouseClick = () => {
@@ -31,7 +46,7 @@ export const MapDot = (props: MapEntry) => {
       <div className="pr-2 pl-2 text-center relative bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
-      <button className="w-10 h-10 mt-1 rounded-full bg-red-500" style={{
+      <button className={`w-10 h-10 mt-1 rounded-full ${colorVariants[color]}`} style={{
       }} onClick={handleMouseClick} />
     </div>
     {popupOpen ?
