@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
-import { Question } from "./Question";
+import { Question, QUESTION_LIMIT } from "./Question";
 
 // float 0 to 1
 type Coordinates = {
@@ -10,11 +10,8 @@ type Coordinates = {
 
 export type MapEntry = {
   coordinates: Coordinates,
-
   popup: ReactNode,
-
   name: string,
-
   color?: string
 }
 
@@ -68,26 +65,58 @@ type PopupProps = {
   questions: Array<Question>
 }
 export const MapPopup = (props: PopupProps) => {
+  const { state, setState } = useAppContext();
+  // state.askedQuestions
+  //const [askedQuestions, setAskedQuestions ] = useState<number>(0);
+
   const [content, setContent] = useState<string>(props.content);
+  const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
 
   const onQuestion = (event: React.MouseEvent<HTMLElement>) => {
     const buttonIndex = +event.currentTarget.id.substring(3);
-    if(props.questions[buttonIndex].isAsked && props.questions[buttonIndex].leadingQuestion !== undefined) {
+    const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
+    const stateAskedQuestions = [...state.askedQuestions];
+
+    if (
+      state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[buttonIndex].isAsked && 
+      props.questions[buttonIndex].leadingQuestion !== undefined
+    ) {
       const answer = props.questions[buttonIndex].leadingQuestion.answer;
-      props.questions[buttonIndex].leadingQuestion.isAsked = true;
+
+      stateAskedQuestions[state.level-1].map(levelItem => {
+        if (levelItem.title === props.title) {
+          levelItem.askedQuestions[buttonIndex].isLeadingAsked = true;
+        }
+        return levelItem;
+      });
+
       setContent(answer);
     } else {
       setContent(props.questions[buttonIndex].answer);
-      props.questions[buttonIndex].isAsked = true;
+
+      stateAskedQuestions[state.level-1].map(levelItem => {
+        if (levelItem.title === props.title) {
+          levelItem.askedQuestions[buttonIndex].isAsked = true;
+        }
+        return levelItem;
+      });
+
       event.currentTarget.textContent = props.questions[buttonIndex].leadingQuestion?.question;
     }
+    setState({ ...state, askedQuestions: stateAskedQuestions});
+    //setAskedQuestions(askedQuestions + 1);
   }
 
-  const questionsContent = props.questions?.map((question, questionIndex) => {
+  const questionsContent = props.questions.map((question, questionIndex) => {
     const questId = props.title[0] + questionIndex;
+    
     return (
       <>{
-        (!question.isAsked || (question.leadingQuestion && !question.leadingQuestion.isAsked)) &&
+        //askedQuestions < QUESTION_LIMIT && 
+        (
+          !state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[questionIndex].isAsked || 
+          (question.leadingQuestion && !state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
+        ) &&
         <button 
           onClick={onQuestion} 
           id={"q_" + questId} 
