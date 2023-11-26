@@ -17,6 +17,7 @@ export type AskedQuestion = {
 
 export type AskedLevelItem = {
     title: string,
+    nAskedQuestions: number,
     askedQuestions: Array<AskedQuestion>
 }
 

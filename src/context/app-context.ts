@@ -21,6 +21,7 @@ export const defaultState = {
     [
         {
             title: "Олександр",
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false,
@@ -33,6 +34,7 @@ export const defaultState = {
         },
         {
             title: "Петро",
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false,
@@ -45,6 +47,7 @@ export const defaultState = {
         },
         {
             title: "Максим",
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false
@@ -57,6 +60,7 @@ export const defaultState = {
         },
         {
             title: "Віктор", 
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false,
@@ -69,6 +73,7 @@ export const defaultState = {
         },
         {
             title: "Софія", 
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false
@@ -81,6 +86,7 @@ export const defaultState = {
         },
         {
             title: "Анна", 
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false
@@ -93,6 +99,7 @@ export const defaultState = {
         },
         {
             title: "Юлія", 
+            nAskedQuestions: 0,
             askedQuestions: [
                 {
                     isAsked: false,

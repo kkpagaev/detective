@@ -66,16 +66,18 @@ type PopupProps = {
 }
 export const MapPopup = (props: PopupProps) => {
   const { state, setState } = useAppContext();
-  // state.askedQuestions
-  //const [askedQuestions, setAskedQuestions ] = useState<number>(0);
+  // const [ askedQuestions, setAskedQuestions ] = useState<number>(0);
 
   const [content, setContent] = useState<string>(props.content);
   const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
 
-  const onQuestion = (event: React.MouseEvent<HTMLElement>) => {
+  const onQuestionAsked = (event: React.MouseEvent<HTMLElement>) => {
     const buttonIndex = +event.currentTarget.id.substring(3);
     const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
     const stateAskedQuestions = [...state.askedQuestions];
+
+    ;
+    ++stateAskedQuestions[state.level-1][levelItemIndex].nAskedQuestions;
 
     if (
       state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[buttonIndex].isAsked && 
@@ -112,13 +114,13 @@ export const MapPopup = (props: PopupProps) => {
     
     return (
       <>{
-        //askedQuestions < QUESTION_LIMIT && 
+        state.askedQuestions[state.level-1][levelItemIndex].nAskedQuestions < QUESTION_LIMIT && 
         (
           !state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[questionIndex].isAsked || 
           (question.leadingQuestion && !state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
         ) &&
         <button 
-          onClick={onQuestion} 
+          onClick={onQuestionAsked} 
           id={"q_" + questId} 
           key={questId} 
           className="rounded border bg-white border-black" 
