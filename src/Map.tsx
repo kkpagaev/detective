@@ -76,7 +76,7 @@ export const MapPopup = (props: PopupProps) => {
     const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
     const stateAskedQuestions = [...state.askedQuestions];
 
-    ;
+    let newPoints = state.points;
     ++stateAskedQuestions[state.level-1][levelItemIndex].nAskedQuestions;
 
     if (
@@ -84,6 +84,8 @@ export const MapPopup = (props: PopupProps) => {
       props.questions[buttonIndex].leadingQuestion !== undefined
     ) {
       const answer = props.questions[buttonIndex].leadingQuestion.answer;
+
+      newPoints += props.questions[buttonIndex].leadingQuestion.points;
 
       stateAskedQuestions[state.level-1].map(levelItem => {
         if (levelItem.title === props.title) {
@@ -96,6 +98,8 @@ export const MapPopup = (props: PopupProps) => {
     } else {
       setContent(props.questions[buttonIndex].answer);
 
+      newPoints += props.questions[buttonIndex].points;
+
       stateAskedQuestions[state.level-1].map(levelItem => {
         if (levelItem.title === props.title) {
           levelItem.askedQuestions[buttonIndex].isAsked = true;
@@ -105,7 +109,7 @@ export const MapPopup = (props: PopupProps) => {
 
       event.currentTarget.textContent = props.questions[buttonIndex].leadingQuestion?.question;
     }
-    setState({ ...state, askedQuestions: stateAskedQuestions});
+    setState({ ...state, points: newPoints, askedQuestions: stateAskedQuestions});
     //setAskedQuestions(askedQuestions + 1);
   }
 
