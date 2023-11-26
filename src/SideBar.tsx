@@ -1,10 +1,14 @@
 import { useAppContext } from "./context/app-context";
 
-export const SideBar = () => {
+export type LeadEntry = {
+  leadDescription: string
+}
+
+export const SideBar = (props: LeadEntry) => {
   const { state, setState } = useAppContext();
 
   const addLead = () => {
-    setState({ ...state, leads: [...state.leads, "bar"] });
+    setState({ ...state, leads: [...state.leads, props.leadDescription] });
   }
 
   return <div className="h-full p-10 flex flex-col gap-12 bg-gray-200 border-gray-500 border border-10">

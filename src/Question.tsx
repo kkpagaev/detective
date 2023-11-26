@@ -3,6 +3,7 @@ export type Question = {
     answer: string,
     isAsked: boolean,
     points: number,
+    lead?: string,
     leadingQuestion?: Question
 }
 
@@ -34,9 +35,10 @@ export const questions: Array<Array<LevelItem>> = [
                     points: 0,
                     leadingQuestion: {
                         question: "На яких підставах?",
-                        answer: "Бачив як Макс вийшов з червоною флешкою із серверної та передав її Петру.",
+                        answer: "Вони часто спілкуються між собою щоб ніхто не чув. Ще в той день Макс передав червону флешку Петру.",
                         isAsked: false,
-                        points: 10
+                        points: 10,
+                        lead: "Коли стався інцедент, Макс передав якусь флешку Петру."
                     }
                 },
                 {
@@ -77,7 +79,8 @@ export const questions: Array<Array<LevelItem>> = [
                     question: "Кого ви підозрюєте та чому?",
                     answer: "Я не міг би бути причетним, працював над іншим проектом у той час.",
                     isAsked: false,
-                    points: 10
+                    points: 10,
+                    lead: "Макс почав одразу заперечувати свою причетність.",
                 },
                 {
                     question: "Що ви помітили під час атаки?",
@@ -130,6 +133,7 @@ export const questions: Array<Array<LevelItem>> = [
                     answer: "Побачила, як Максим виходив з серверної зони.",
                     isAsked: false,
                     points: 10,
+                    lead: "У день інцеденту, Макс відвідував серверну.",
                     leadingQuestion: {
                         question: "Куди він направлявся?",
                         answer: "Наскільки я памʼятаю, до ліфта.",
@@ -174,7 +178,8 @@ export const questions: Array<Array<LevelItem>> = [
                         question: "Питання якого типу?",
                         answer: "Типу, як працює сервер, чи не треба зробити бекап.",
                         isAsked: false,
-                        points: 10
+                        points: 10,
+                        lead: "Петро любить задавати специфічні питання."
                     }
                 },
                 {

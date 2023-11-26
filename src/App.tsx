@@ -14,7 +14,9 @@ function App() {
       <AppContextProvider>
         <div className='container m-auto grid grid-cols-3'> 
           <div className=''> 
-            <SideBar />
+            <SideBar
+              leadDescription='bar'
+            />
           </div>
           <div className="bg-gray-100 p-8 col-span-2 h-screen">
             <MapComponent mapEntries={MapEntries()[state.level - 1]} imageUrl={officeMap}/>

@@ -66,7 +66,6 @@ type PopupProps = {
 }
 export const MapPopup = (props: PopupProps) => {
   const { state, setState } = useAppContext();
-  // const [ askedQuestions, setAskedQuestions ] = useState<number>(0);
 
   const [content, setContent] = useState<string>(props.content);
   const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
@@ -77,15 +76,25 @@ export const MapPopup = (props: PopupProps) => {
     const stateAskedQuestions = [...state.askedQuestions];
 
     let newPoints = state.points;
+
+    let newLeads = [...state.leads];
+
     ++stateAskedQuestions[state.level-1][levelItemIndex].nAskedQuestions;
 
+    // If a user asks a leading question
     if (
       state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[buttonIndex].isAsked && 
       props.questions[buttonIndex].leadingQuestion !== undefined
     ) {
       const answer = props.questions[buttonIndex].leadingQuestion.answer;
+      setContent(answer);
 
       newPoints += props.questions[buttonIndex].leadingQuestion.points;
+
+      const newLead = props.questions[buttonIndex].leadingQuestion?.lead;
+      if (newLead) {
+        newLeads.push(newLead);
+      }
 
       stateAskedQuestions[state.level-1].map(levelItem => {
         if (levelItem.title === props.title) {
@@ -93,12 +102,17 @@ export const MapPopup = (props: PopupProps) => {
         }
         return levelItem;
       });
+    } else { // If a user asks a regular question
+      event.currentTarget.textContent = props.questions[buttonIndex].leadingQuestion?.question;
 
-      setContent(answer);
-    } else {
       setContent(props.questions[buttonIndex].answer);
 
       newPoints += props.questions[buttonIndex].points;
+
+      const newLead = props.questions[buttonIndex].lead;
+      if (newLead) {
+        newLeads.push(newLead);
+      }
 
       stateAskedQuestions[state.level-1].map(levelItem => {
         if (levelItem.title === props.title) {
@@ -106,11 +120,8 @@ export const MapPopup = (props: PopupProps) => {
         }
         return levelItem;
       });
-
-      event.currentTarget.textContent = props.questions[buttonIndex].leadingQuestion?.question;
     }
-    setState({ ...state, points: newPoints, askedQuestions: stateAskedQuestions});
-    //setAskedQuestions(askedQuestions + 1);
+    setState({ ...state, points: newPoints, leads: newLeads, askedQuestions: stateAskedQuestions});
   }
 
   const questionsContent = props.questions.map((question, questionIndex) => {
