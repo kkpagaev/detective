@@ -72,7 +72,6 @@ export const MapPopup = (props: PopupProps) => {
 
   const onQuestionAsked = (event: React.MouseEvent<HTMLElement>) => {
     const buttonIndex = +event.currentTarget.id.substring(3);
-    const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
     const stateAskedQuestions = [...state.askedQuestions];
 
     let newPoints = state.points;
@@ -162,9 +161,10 @@ export const MapPopup = (props: PopupProps) => {
 
 type Props = {
   imageUrl: string,
-  mapEntries: Array<MapEntry>
+  mapEntries: Array<Array<MapEntry>>
 }
 export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
+  const { state } = useAppContext();
   const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const ref = useRef<HTMLImageElement>(null);
 
@@ -203,9 +203,9 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
 
   return <div>
     <div className="relative">
-      {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
+      {mapEntries[state.level - 1].map((entry, i) => <MapDot key={i} {...entry} />)}
       <MapDot coordinates={coordinates} popup={
-        <MapPopup {...{ title: 'title', content: 'content' }} />} name="test" />
+        <MapPopup {...{ title: 'title', content: 'content', questions: []}} />} name="test" />
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {

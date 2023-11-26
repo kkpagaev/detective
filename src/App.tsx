@@ -4,10 +4,10 @@ import { AppContextProvider } from './context/AppContextProvider'
 import { MapEntries } from './mapEntries'
 import officeMap from "./assets/office2.png"
 import { SideBar } from './SideBar'
-import { useAppContext } from "./context/app-context";
 
 function App() {
-  const { state } = useAppContext();
+
+  const allMapEntries = MapEntries();
 
   return (
     <>
@@ -19,7 +19,7 @@ function App() {
             />
           </div>
           <div className="bg-gray-100 p-8 col-span-2 h-screen">
-            <MapComponent mapEntries={MapEntries()[state.level - 1]} imageUrl={officeMap}/>
+            <MapComponent mapEntries={allMapEntries} imageUrl={officeMap}/>
           </div>
         </div>
       </AppContextProvider>

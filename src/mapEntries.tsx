@@ -1,4 +1,4 @@
-import { MapEntry, MapPopup } from "./Map";
+import { MapPopup } from "./Map";
 import sanyaImage from './assets/sanya.svg';
 import maxImage from './assets/max.svg';
 import petroImage from './assets/petro.svg';
@@ -6,7 +6,6 @@ import juliyaImage from './assets/juliya.svg';
 import sofaImage from './assets/sofa.svg';
 import victorImage from './assets/victor.svg';
 import annaImage from './assets/anna.svg';
-import { useAppContext } from "./context/app-context";
 import { questions } from "./Question";
 
 //Array<Array<MapEntry>>
@@ -113,6 +112,67 @@ export const MapEntries = () => {
           questions={questions[0][6].questions}
         />
       },
-    ]
+    ],
+    [
+
+      {
+        name: 'Камера (Сходи)',
+        coordinates: {
+          x: 0.7418706432192649,
+          y: 0.26256983240223464
+        },
+        color: "emerald",
+        popup: <MapPopup
+          image={sanyaImage}
+          title="Камера (Сходи)"
+          content="Керівник айті відділу (7 років). Має великий досвід роботи в компанії, можливо, має повний доступ до інформаційних систем."
+          questions={questions[0][0].questions}
+        />
+      },
+      {
+        name: 'Сервер',
+        coordinates: {
+          x: 0.2995385773130545,
+          y: 0.8994413407821229
+        },
+        color: "yellow",
+        popup: <MapPopup
+          image={petroImage}
+          title="Сервер"
+          content="Переглянути логи серверу."
+          questions={questions[0][1].questions}
+        />
+      },
+      {
+        name: 'Камера (Ліфт)',
+        coordinates: {
+          x: 0.16519130228136883,
+          y: 0.0074487895716946
+        },
+        color: "red",
+        popup: <MapPopup
+          image={maxImage}
+          title="Камера (Ліфт)"
+          content="Розробник (2 роки роботи). Він працює в компанії протягом достатнього часу, щоб отримати доступ до системи. Відомо, що він має доступ до серверної зони, де відбуваються важливі операції."
+          questions={questions[0][2].questions}
+        />
+      },
+      {
+        name: 'Камера (Серверна)',
+        coordinates: {
+          x: 0.23616722116603295,
+          y: 0.7560521415270018
+        },
+        color: "blue",
+        popup: <MapPopup
+          image={victorImage}
+          title="Камера (Серверна)"
+          content="Охоронець (працює кілька днів). Ймовірно, він може бути відговідальним за фізичну безпеку, але його знання про технічні питання обмежене."
+          questions={questions[0][3].questions}
+        />
+      },
+    ],
+    [],
+    []
   ]
 }

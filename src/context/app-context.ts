@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { AskedLevelItem, AskedQuestion } from "../Question";
+import { AskedLevelItem } from "../Question";
 
 export type AppState = {
   level: number
@@ -120,6 +120,5 @@ export const AppContext = createContext<AppContextData>({
     console.log(state);
   }
 });
-
 
 export const useAppContext = () => useContext(AppContext);
