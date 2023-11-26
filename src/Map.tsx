@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
+import { Question } from "./Question";
 
 // float 0 to 1
 type Coordinates = {
@@ -14,7 +15,7 @@ export type MapEntry = {
 
   name: string,
 
-  color: string
+  color?: string
 }
 
 export const MapDot = (props: MapEntry) => {
@@ -53,28 +54,63 @@ export const MapDot = (props: MapEntry) => {
       <div style={{
         left: `calc(${coordinates.x * 100}% - 12rem)`,
         top: `calc(${coordinates.y * 100}% + 3rem)`,
-      }} className="absolute z-50" onMouseEnter={() => setPopupOpen(true)} onMouseLeave={() => setPopupOpen(false)} >
+      }} className="absolute z-50" >
         {props.popup}
       </div> : null
     }
   </div>
 }
 
-
 type PopupProps = {
   title: string,
   content: string,
-  image?: string
+  image?: string,
+  questions: Array<Question>
 }
 export const MapPopup = (props: PopupProps) => {
+  const [content, setContent] = useState<string>(props.content);
+
+  const onQuestion = (event: React.MouseEvent<HTMLElement>) => {
+    const buttonIndex = +event.currentTarget.id.substring(3);
+    if(props.questions[buttonIndex].isAsked && props.questions[buttonIndex].leadingQuestion !== undefined) {
+      const answer = props.questions[buttonIndex].leadingQuestion.answer;
+      props.questions[buttonIndex].leadingQuestion.isAsked = true;
+      setContent(answer);
+    } else {
+      setContent(props.questions[buttonIndex].answer);
+      props.questions[buttonIndex].isAsked = true;
+      event.currentTarget.textContent = props.questions[buttonIndex].leadingQuestion?.question;
+    }
+  }
+
+  const questionsContent = props.questions?.map((question, questionIndex) => {
+    const questId = props.title[0] + questionIndex;
+    return (
+      <>{
+        (!question.isAsked || (question.leadingQuestion && !question.leadingQuestion.isAsked)) &&
+        <button 
+          onClick={onQuestion} 
+          id={"q_" + questId} 
+          key={questId} 
+          className="rounded border bg-white border-black" 
+          style={{ paddingLeft: "10px", paddingRight: "10px" }}
+        >
+          {question.question}
+        </button>
+      }</>
+      
+    );
+  });
+
   return <div className="transition-all w-96 p-8 flex flex-col gap-4 text-lg bg-gray-100 border-gray-500 border border-10">
     <h3 className="text-center font-bold">
       {props.title}
     </h3>
     {props.image && <img className="w-1/2 m-auto" src={props.image} />}
     <p>
-      {props.content}
+      {content}
     </p>
+    <div>{questionsContent}</div>
   </div>
 }
 
