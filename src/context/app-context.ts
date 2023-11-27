@@ -10,6 +10,7 @@ export type AppState = {
   levelName: string
   points: number
   leads: Array<string>
+  serverRoomChoise?: "audio" | "video",
   visitedCameras: Record<CameraName, Array<number>>
   askedQuestions: Array<AskedLevelItem>
   askedQuestionsThree: Array<AskedLevelItemThree>
