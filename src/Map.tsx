@@ -3,6 +3,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
 import { Popup } from "./Popup";
+import { VisibilityContextProvider } from "./context/VisibilityContextProvider";
 
 // float 0 to 1
 type Coordinates = {
@@ -69,15 +70,17 @@ export const MapDot = (props: MapEntry) => {
       <button className={`w-10 h-10 mt-1 rounded-full ${colorVariants[color]}`} style={{
       }} onClick={handleMouseClick} />
     </div>
-    <div
-      ref={wrappedRef}
-      style={{
-        visibility: popupOpen ? 'visible' : 'hidden',
-        left: `calc(${coordinates.x * 100}% - 12rem)`,
-        top: `calc(${coordinates.y * 100}% + 3rem)`,
-      }} className="absolute z-50" >
-      {props.popup}
-    </div>
+    <VisibilityContextProvider isVisible={popupOpen}>
+      <div
+        ref={wrappedRef}
+        style={{
+          visibility: popupOpen ? 'visible' : 'hidden',
+          left: `calc(${coordinates.x * 100}% - 12rem)`,
+          top: `calc(${coordinates.y * 100}% + 3rem)`,
+        }} className="absolute z-50" >
+        {props.popup}
+      </div>
+    </VisibilityContextProvider>
   </div>
 }
 

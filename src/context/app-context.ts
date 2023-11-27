@@ -1,11 +1,14 @@
 import { createContext, useContext } from "react";
 import { AskedLevelItem } from "../Question";
+import { CameraName } from "../CameraPopup";
 
 export type AppState = {
+  // from 0 to 8
+  time: number
   level: number
   points: number
   leads: Array<string>
-  visitedCameras: Array<string>
+  visitedCameras: Record<CameraName, Array<number>>
   askedQuestions: Array<AskedLevelItem>
   askedQuestionsThree: Array<AskedLevelItemThree>
 }
@@ -14,14 +17,20 @@ interface AppContextData {
   state: AppState,
   loaded: boolean,
   setState: (state: AppState) => void,
+  addLead: (lead: string) => void,
   resetState: () => void
 }
 
 export const defaultState = <AppState>{
   level: 1,
+  time: 0,
   points: 0,
   leads: [],
-  visitedCameras: [],
+  visitedCameras: {
+    "Камера (Ліфт)": [],
+    "Камера (Сходи)": [],
+    "Камера (Серверна)": []
+  },
   askedQuestions: [{
     title: "Олександр",
     nAskedQuestions: 0,
@@ -173,6 +182,7 @@ export const AppContext = createContext<AppContextData>({
   },
   loaded: false,
   resetState: () => { },
+  addLead: () => { }
 });
 
 export const useAppContext = () => useContext(AppContext);

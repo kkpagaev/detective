@@ -10,10 +10,19 @@ export type LeadEntry = {
 
 const useCanGoToTheNextLevel = () => {
   const { state } = useAppContext();
-  const currentQuestionLimit = state.level === 1 ? QUESTION_LIMIT : QUESTION_LIMIT_THREE;
-  const currentStateAskedQuestions = state.level === 1 ? state.askedQuestions : state.askedQuestionsThree;
-  const askedAllQuestions = currentStateAskedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < currentQuestionLimit).length === 0;
-  return state.points >= POINTS_REQUIREMENT && askedAllQuestions
+  
+  if (state.level === 1 || state.level === 3) {
+    const currentQuestionLimit = state.level === 1 ? QUESTION_LIMIT : QUESTION_LIMIT_THREE;
+    const currentStateAskedQuestions = state.level === 1 ? state.askedQuestions : state.askedQuestionsThree;
+    const askedAllQuestions = currentStateAskedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < currentQuestionLimit).length === 0;
+    return state.points >= POINTS_REQUIREMENT && askedAllQuestions
+  }
+
+  if(state.level === 2) {
+    return state.visitedCameras["Камера (Ліфт)"].length === 1
+  }
+
+  return false
 }
 
 export const SideBar = (props: LeadEntry) => {

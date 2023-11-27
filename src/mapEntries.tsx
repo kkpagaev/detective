@@ -144,17 +144,21 @@ const camerasOne = [
       y: 0.26256983240223464
     },
     color: "emerald",
-    popup: <CameraPopup />
+    popup: <CameraPopup
+      name="Камера (Сходи)"
+    />
   },
-  {
-    name: 'Сервер',
-    coordinates: {
-      x: 0.2995385773130545,
-      y: 0.8994413407821229
-    },
-    color: "yellow",
-    popup: <CameraPopup />
-  },
+  // {
+  //   name: 'Сервер',
+  //   coordinates: {
+  //     x: 0.2995385773130545,
+  //     y: 0.8994413407821229
+  //   },
+  //   color: "yellow",
+  //   popup: <CameraPopup 
+  //     name="Сервер"
+  //   />
+  // },
   {
     name: 'Камера (Ліфт)',
     coordinates: {
@@ -162,7 +166,9 @@ const camerasOne = [
       y: 0.0074487895716946
     },
     color: "red",
-    popup: <CameraPopup />
+    popup: <CameraPopup 
+      name="Камера (Ліфт)"
+    />
   },
   {
     name: 'Камера (Серверна)',
@@ -171,7 +177,9 @@ const camerasOne = [
       y: 0.7560521415270018
     },
     color: "blue",
-    popup: <CameraPopup />
+    popup: <CameraPopup 
+      name="Камера (Серверна)"
+    />
   },
 ]
 

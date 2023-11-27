@@ -4,6 +4,7 @@ import { useAppContext } from "./context/app-context";
 import { useMapEntries } from "./mapEntries";
 import officeMap from "./assets/office2.png"
 import { InterrogationComponent } from "./Interrogation";
+import { Slider } from "./Slider";
 
 export const Main = () => {
   const { loaded, state } = useAppContext();
@@ -45,6 +46,7 @@ export const Main = () => {
       </div>
       <div className="bg-gray-100 p-8 col-span-2 h-screen">
         <MapComponent mapEntries={mapEntries} imageUrl={officeMap} />
+        {state.level === 2 ? <Slider /> : null}
       </div>
     </div>
   );
