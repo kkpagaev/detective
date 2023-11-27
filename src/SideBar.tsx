@@ -8,11 +8,23 @@ export type LeadEntry = {
   leadDescription: string
 }
 
+const useCanGoToTheNextLevel = () => {
+  const { state } = useAppContext();
+  const askedAllQuestions = state.askedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < QUESTION_LIMIT).length === 0;
+  if (state.points >= POINTS_REQUIREMENT && askedAllQuestions) {
+    return true
+  }
+  return false
+}
+
 export const SideBar = (props: LeadEntry) => {
   const { state, setState, resetState } = useAppContext();
+  const canGoToTheNextLevel = useCanGoToTheNextLevel();
 
   const addLead = () => {
-    setState({ ...state, leads: [...state.leads, props.leadDescription] });
+    if (canGoToTheNextLevel) {
+      setState({ ...state, leads: [...state.leads, props.leadDescription] });
+    }
   }
 
   // Transition to a new level only if all questions were asked and a sufficient number of points was scored
@@ -32,11 +44,15 @@ export const SideBar = (props: LeadEntry) => {
         RESET STATE
       </button>
     </div>
-    <div>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={onNewLevel}>
-        NEW LEVEL
-      </button>
-    </div>
+    {
+      canGoToTheNextLevel ?
+        <div>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={onNewLevel}>
+            NEW LEVEL
+          </button>
+        </div>
+        : null
+    }
     <div>
       <button className="" onClick={addLead}>
         add lead

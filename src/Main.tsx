@@ -1,13 +1,13 @@
 import { MapComponent } from "./Map";
 import { SideBar } from "./SideBar";
 import { useAppContext } from "./context/app-context";
-import { MapEntries } from "./mapEntries";
+import { useMapEntries } from "./mapEntries";
 import officeMap from "./assets/office2.png"
 
 export const Main = () => {
-  const { state, loaded } = useAppContext();
+  const { loaded } = useAppContext();
 
-  const mapEntries = MapEntries(state);
+  const mapEntries = useMapEntries();
 
   if (mapEntries === undefined) {
     return <SideBar
@@ -32,3 +32,7 @@ export const Main = () => {
     </div>
   );
 }
+
+// 13 00 - максим зайшов в серверну кімнату і вставив флешку
+// 13 04 - софія спускається на ліфті
+// 9 00 -- 13 00 ----- 18 00

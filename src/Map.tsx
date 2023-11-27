@@ -81,13 +81,13 @@ export const MapDot = (props: MapEntry) => {
   </div>
 }
 
-type PopupProps = {
+type QuestionPopupProps = {
   title: string,
   content: string,
   image?: string,
   questions: Array<Question>
 }
-export const MapPopup = (props: PopupProps) => {
+export const QuestionPopup = (props: QuestionPopupProps) => {
   const { state, setState } = useAppContext();
 
   const [content, setContent] = useState<string>(props.content);
@@ -224,7 +224,7 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     <div className="relative">
       {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
       <MapDot coordinates={coordinates} popup={
-        <MapPopup {...{ title: 'title', content: 'content', questions: [] }} />} name="test" />
+        <QuestionPopup {...{ title: 'title', content: 'content', questions: [] }} />} name="test" />
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {
