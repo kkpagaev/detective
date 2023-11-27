@@ -4,6 +4,9 @@ import stairsImage from "./assets/stairs.jpg"
 import elevatorImage from "./assets/elevator.webp"
 import serversImage from "./assets/servers.jpg"
 import catVideo from "./assets/cat.mp4"
+import { useEffect, useRef } from "react";
+import { useVisibilityContext } from "./context/VisibilityContextProvider";
+
 
 const cameraNames = {
   STAIRS: "Камера (Сходи)",
@@ -79,11 +82,19 @@ type Props = {
 }
 export const CameraPopup = (props: Props) => {
   const cameraState = useCameraState(props.name);
+  const isVisible = useVisibilityContext();
+
+  useEffect(() => {
+    if (isVisible) {
+      // alert("Camera popup")
+    }
+  }, [isVisible])
+
 
   return <Popup>
-    <p>
-      {cameraState.video ? <video controls src={cameraState.video} />: <img src={cameraState.image} />}
+    <div>
+      {cameraState.video ? <video controls src={cameraState.video} autoPlay muted />: <img src={cameraState.image} />}
       {cameraState.text}
-    </p>
+    </div>
   </Popup>
 }
