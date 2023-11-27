@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { AskedLevelItem } from "../Question";
+import { AskedLevelItem, AskedLevelItemThree } from "../Question";
 import { CameraName } from "../CameraPopup";
 
 export type AppState = {
