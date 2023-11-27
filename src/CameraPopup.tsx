@@ -73,7 +73,7 @@ function useCameraState(name: CameraName) {
   const cameraState = camera[state.time * 2]
   const defauctState = defaultCamerasStates[name]
   console.log(state.time * 2);
-  
+
 
   return {
     ...defauctState,
@@ -85,19 +85,20 @@ type Props = {
   name: CameraName
 }
 export const CameraPopup = (props: Props) => {
-  const { state, setState, addLead } = useAppContext();
+  const { state, setState } = useAppContext();
   const cameraState = useCameraState(props.name);
   const isVisible = useVisibilityContext();
 
   useEffect(() => {
     if (!isVisible) return
 
-    if (cameraState.lead) {
-      addLead(cameraState.lead);
-    }
     if (cameraState.needed) {
       if (!state.visitedCameras[props.name].includes(state.time)) {
-        setState({ ...state, visitedCameras: { ...state.visitedCameras, [props.name]: [...state.visitedCameras[props.name], state.time] } })
+        setState({
+          ...state,
+          leads: cameraState.lead ? !state.leads.includes(cameraState.lead) ? [...state.leads, cameraState.lead] : state.leads : state.leads,
+          visitedCameras: { ...state.visitedCameras, [props.name]: [...state.visitedCameras[props.name], state.time] }
+        })
       }
     }
   }, [isVisible])
@@ -105,7 +106,7 @@ export const CameraPopup = (props: Props) => {
 
   return <Popup>
     <div>
-      {cameraState.video ? <video controls src={cameraState.video} autoPlay muted />: <img src={cameraState.image} />}
+      {cameraState.video ? <video controls src={cameraState.video} autoPlay muted /> : <img src={cameraState.image} />}
       {cameraState.text}
     </div>
   </Popup>
