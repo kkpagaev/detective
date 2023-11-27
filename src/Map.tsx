@@ -2,6 +2,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
+import { Popup } from "./Popup";
 
 // float 0 to 1
 type Coordinates = {
@@ -90,7 +91,7 @@ export const MapPopup = (props: PopupProps) => {
   const { state, setState } = useAppContext();
 
   const [content, setContent] = useState<string>(props.content);
-  const levelItemIndex = state.askedQuestions[state.level - 1].findIndex(levelItem => levelItem.title === props.title);
+  const levelItemIndex = state.askedQuestions.findIndex(levelItem => levelItem.title === props.title);
 
   const onQuestionAsked = (event: React.MouseEvent<HTMLElement>) => {
     const buttonIndex = +event.currentTarget.id.substring(3);
@@ -100,11 +101,11 @@ export const MapPopup = (props: PopupProps) => {
 
     const newLeads = [...state.leads];
 
-    ++stateAskedQuestions[state.level - 1][levelItemIndex].nAskedQuestions;
+    ++stateAskedQuestions[levelItemIndex].nAskedQuestions;
 
     // If a user asks a leading question
     if (
-      state.askedQuestions[state.level - 1][levelItemIndex].askedQuestions[buttonIndex].isAsked &&
+      state.askedQuestions[levelItemIndex].askedQuestions[buttonIndex].isAsked &&
       props.questions[buttonIndex].leadingQuestion !== undefined
     ) {
       const answer = props.questions[buttonIndex].leadingQuestion.answer;
@@ -117,7 +118,7 @@ export const MapPopup = (props: PopupProps) => {
         newLeads.push(newLead);
       }
 
-      stateAskedQuestions[state.level - 1].map(levelItem => {
+      stateAskedQuestions.map(levelItem => {
         if (levelItem.title === props.title) {
           levelItem.askedQuestions[buttonIndex].isLeadingAsked = true;
         }
@@ -135,7 +136,7 @@ export const MapPopup = (props: PopupProps) => {
         newLeads.push(newLead);
       }
 
-      stateAskedQuestions[state.level - 1].map(levelItem => {
+      stateAskedQuestions.map(levelItem => {
         if (levelItem.title === props.title) {
           levelItem.askedQuestions[buttonIndex].isAsked = true;
         }
@@ -150,10 +151,10 @@ export const MapPopup = (props: PopupProps) => {
 
     return (
       <>{
-        state.askedQuestions[state.level - 1][levelItemIndex].nAskedQuestions < QUESTION_LIMIT &&
+        state.askedQuestions[levelItemIndex].nAskedQuestions < QUESTION_LIMIT &&
         (
-          !state.askedQuestions[state.level - 1][levelItemIndex].askedQuestions[questionIndex].isAsked ||
-          (question.leadingQuestion && !state.askedQuestions[state.level - 1][levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
+          !state.askedQuestions[levelItemIndex].askedQuestions[questionIndex].isAsked ||
+          (question.leadingQuestion && !state.askedQuestions[levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
         ) &&
         <button
           onClick={onQuestionAsked}
@@ -169,16 +170,13 @@ export const MapPopup = (props: PopupProps) => {
     );
   });
 
-  return <div className="transition-all w-96 p-8 flex flex-col gap-4 text-lg bg-gray-100 border-gray-500 border border-10">
-    <h3 className="text-center font-bold">
-      {props.title}
-    </h3>
+  return <Popup title={props.title}>
     {props.image && <img className="w-1/2 m-auto" src={props.image} />}
     <p>
       {content}
     </p>
     <div>{questionsContent}</div>
-  </div>
+  </Popup>
 }
 
 type Props = {

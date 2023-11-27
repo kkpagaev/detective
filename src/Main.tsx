@@ -5,9 +5,16 @@ import { MapEntries } from "./mapEntries";
 import officeMap from "./assets/office2.png"
 
 export const Main = () => {
-  const allMapEntries = MapEntries();
-
   const { state, loaded } = useAppContext();
+
+  const mapEntries = MapEntries(state);
+
+  if (mapEntries === undefined) {
+    return <SideBar
+          leadDescription='bar'
+        />
+
+  }
 
   if (!loaded) {
     return <div>Loading...</div>
@@ -20,7 +27,7 @@ export const Main = () => {
         />
       </div>
       <div className="bg-gray-100 p-8 col-span-2 h-screen">
-        <MapComponent mapEntries={allMapEntries[state.level - 1]} imageUrl={officeMap} />
+        <MapComponent mapEntries={mapEntries} imageUrl={officeMap} />
       </div>
     </div>
   );

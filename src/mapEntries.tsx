@@ -7,12 +7,11 @@ import sofaImage from './assets/sofa.svg';
 import victorImage from './assets/victor.svg';
 import annaImage from './assets/anna.svg';
 import { questions } from "./Question";
+import { AppState } from "./context/app-context";
+import { CameraPopup } from "./CameraPopup";
 
 //Array<Array<MapEntry>>
-
-export const MapEntries = () => {
-  return [
-    [
+const questionMapEntries = [
       {
         name: 'Кер. IT відділу',
         coordinates: {
@@ -111,9 +110,9 @@ export const MapEntries = () => {
           questions={questions[0][6].questions}
         />
       },
-    ],
-    [
+    ]
 
+const camerasOne = [
       {
         name: 'Камера (Сходи)',
         coordinates: {
@@ -121,12 +120,7 @@ export const MapEntries = () => {
           y: 0.26256983240223464
         },
         color: "emerald",
-        popup: <MapPopup
-          image={sanyaImage}
-          title="Камера (Сходи)"
-          content="Керівник айті відділу (7 років). Має великий досвід роботи в компанії, можливо, має повний доступ до інформаційних систем."
-          questions={questions[0][0].questions}
-        />
+        popup: <CameraPopup />
       },
       {
         name: 'Сервер',
@@ -135,12 +129,7 @@ export const MapEntries = () => {
           y: 0.8994413407821229
         },
         color: "yellow",
-        popup: <MapPopup
-          image={petroImage}
-          title="Сервер"
-          content="Переглянути логи серверу."
-          questions={questions[0][1].questions}
-        />
+        popup: <CameraPopup />
       },
       {
         name: 'Камера (Ліфт)',
@@ -149,12 +138,7 @@ export const MapEntries = () => {
           y: 0.0074487895716946
         },
         color: "red",
-        popup: <MapPopup
-          image={maxImage}
-          title="Камера (Ліфт)"
-          content="Розробник (2 роки роботи). Він працює в компанії протягом достатнього часу, щоб отримати доступ до системи. Відомо, що він має доступ до серверної зони, де відбуваються важливі операції."
-          questions={questions[0][2].questions}
-        />
+        popup: <CameraPopup />
       },
       {
         name: 'Камера (Серверна)',
@@ -163,15 +147,15 @@ export const MapEntries = () => {
           y: 0.7560521415270018
         },
         color: "blue",
-        popup: <MapPopup
-          image={victorImage}
-          title="Камера (Серверна)"
-          content="Охоронець (працює кілька днів). Ймовірно, він може бути відговідальним за фізичну безпеку, але його знання про технічні питання обмежене."
-          questions={questions[0][3].questions}
-        />
+        popup: <CameraPopup />
       },
-    ],
-    [],
-    []
-  ]
+    ]
+
+export const MapEntries = (state: AppState) => {
+  if (state.level == 1) {
+    return questionMapEntries
+  }
+  if (state.level == 2) {
+    return camerasOne
+  }
 }

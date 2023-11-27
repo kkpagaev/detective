@@ -6,7 +6,7 @@ export type AppState = {
   points: number
   leads: Array<string>
   visitedCameras: Array<string>
-  askedQuestions: Array<Array<AskedLevelItem>>
+  askedQuestions: Array<AskedLevelItem>
 }
 
 interface AppContextData {
@@ -21,100 +21,97 @@ export const defaultState = <AppState>{
   points: 0,
   leads: [],
   visitedCameras: [],
-  askedQuestions: [
-    [
-        {
-            title: "Олександр",
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                },
-                {
-                    isAsked: false
-                }
-            ]
-        },
-        {
-            title: "Петро",
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                },
-                {
-                    isAsked: false
-                }
-            ]
-        },
-        {
-            title: "Максим",
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false
-                },
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                }
-            ]
-        },
-        {
-            title: "Віктор", 
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                },
-                {
-                    isAsked: false
-                }
-            ]
-        },
-        {
-            title: "Софія", 
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false
-                },
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                }
-            ]
-        },
-        {
-            title: "Анна", 
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false
-                },
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                }
-            ]
-        },
-        {
-            title: "Юлія", 
-            nAskedQuestions: 0,
-            askedQuestions: [
-                {
-                    isAsked: false,
-                    isLeadingAsked: false
-                },
-                {
-                    isAsked: false
-                }
-            ]
-        }
+  askedQuestions: [{
+    title: "Олександр",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      },
+      {
+        isAsked: false
+      }
     ]
+  },
+  {
+    title: "Петро",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      },
+      {
+        isAsked: false
+      }
+    ]
+  },
+  {
+    title: "Максим",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false
+      },
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      }
+    ]
+  },
+  {
+    title: "Віктор",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      },
+      {
+        isAsked: false
+      }
+    ]
+  },
+  {
+    title: "Софія",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false
+      },
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      }
+    ]
+  },
+  {
+    title: "Анна",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false
+      },
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      }
+    ]
+  },
+  {
+    title: "Юлія",
+    nAskedQuestions: 0,
+    askedQuestions: [
+      {
+        isAsked: false,
+        isLeadingAsked: false
+      },
+      {
+        isAsked: false
+      }
+    ]
+  }
   ]
 }
 
@@ -124,7 +121,7 @@ export const AppContext = createContext<AppContextData>({
     console.log(state);
   },
   loaded: false,
-  resetState: () => {},
+  resetState: () => { },
 });
 
 export const useAppContext = () => useContext(AppContext);

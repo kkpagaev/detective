@@ -17,7 +17,7 @@ export const SideBar = (props: LeadEntry) => {
 
   // Transition to a new level only if all questions were asked and a sufficient number of points was scored
   const onNewLevel = () => {
-    const askedAllQuestions = state.askedQuestions[state.level-1].filter(askedLevelItem => askedLevelItem.nAskedQuestions < QUESTION_LIMIT).length === 0;
+    const askedAllQuestions = state.askedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < QUESTION_LIMIT).length === 0;
     if (state.points >= POINTS_REQUIREMENT && askedAllQuestions) {
       setState({ ...state, points: 0, level: state.level + 1 });
     }
