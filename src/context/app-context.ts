@@ -10,13 +10,18 @@ export type AppState = {
 
 interface AppContextData {
   state: AppState,
-  setState: (state: AppState) => void
+  loaded: boolean,
+  setState: (state: AppState) => void,
+  resetState: () => void
 }
 
 export const defaultState = {
   level: 1,
   points: 0,
   leads: [],
+  visitedCameras: [
+
+  ],
   askedQuestions: [
     [
         {

@@ -25,8 +25,12 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
     setLoaded(true);
   }, []);
 
+  const resetState = () => {
+    setState(JSON.parse(JSON.stringify(defaultState)));
+  };
+
   return (
-    <AppContext.Provider value={{ state, setState }}>
+    <AppContext.Provider value={{ state, setState, loaded, resetState }}>
       {children}
     </AppContext.Provider>
   );

@@ -11,7 +11,6 @@ import { questions } from "./Question";
 //Array<Array<MapEntry>>
 
 export const MapEntries = () => {
-
   return [
     [
       {

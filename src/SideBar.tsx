@@ -9,7 +9,7 @@ export type LeadEntry = {
 }
 
 export const SideBar = (props: LeadEntry) => {
-  const { state, setState } = useAppContext();
+  const { state, setState, resetState } = useAppContext();
 
   const addLead = () => {
     setState({ ...state, leads: [...state.leads, props.leadDescription] });
@@ -27,6 +27,11 @@ export const SideBar = (props: LeadEntry) => {
     <h2 className="flex justify-center text-lg">
       Sidebar
     </h2>
+    <div>
+      <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={resetState}>
+        RESET STATE
+      </button>
+    </div>
     <div>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={onNewLevel}>
         NEW LEVEL
