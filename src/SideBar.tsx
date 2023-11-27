@@ -8,6 +8,19 @@ export type LeadEntry = {
   leadDescription: string
 }
 
+export const getLevelName = (levelNumber: number) => {
+  switch(levelNumber) {
+    case 2:
+      return "Аналіз камер та сервера";
+    case 3:
+      return "Допит головних підозрюваних";
+    case 4:
+      return "Прийняття рішення";
+    default:
+      return "Допит працівників";
+  }
+}
+
 const useCanGoToTheNextLevel = () => {
   const { state } = useAppContext();
   
@@ -38,7 +51,8 @@ export const SideBar = (props: LeadEntry) => {
 
   // Transition to a new level only if all questions were asked and a sufficient number of points was scored
   const onNewLevel = () => {
-    setState({ ...state, points: 0, level: state.level + 1 });
+    const nextLevel = state.level + 1;
+    setState({ ...state, points: 0, level: nextLevel, levelName: getLevelName(nextLevel)});
   }
 
   return <div className="h-full p-10 flex flex-col gap-12 bg-gray-200 border-gray-500 border border-10">
@@ -65,15 +79,7 @@ export const SideBar = (props: LeadEntry) => {
     </div>
     <div className="">
       <p>Points: {state.points}</p>
-      <p>Level: {state.level}</p>
-      <ul>
-        {state.leads.map((lead, index) => {
-          return <li key={index}>
-            {lead}
-          </li>
-        })
-        }
-      </ul>
+      <p>Level: {state.level} (<b>{state.levelName}</b>)</p>
 
     </div>
 

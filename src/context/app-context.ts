@@ -1,11 +1,13 @@
 import { createContext, useContext } from "react";
 import { AskedLevelItem, AskedLevelItemThree } from "../Question";
 import { CameraName } from "../CameraPopup";
+import { getLevelName } from "../SideBar";
 
 export type AppState = {
   // from 0 to 8
   time: number
   level: number
+  levelName: string
   points: number
   leads: Array<string>
   visitedCameras: Record<CameraName, Array<number>>
@@ -23,6 +25,7 @@ interface AppContextData {
 
 export const defaultState = <AppState>{
   level: 1,
+  levelName: getLevelName(1),
   time: 0,
   points: 0,
   leads: [],
