@@ -19,7 +19,7 @@ const useCanGoToTheNextLevel = () => {
   }
 
   if(state.level === 2) {
-    return state.visitedCameras["Камера (Ліфт)"].length === 1
+    return state.visitedCameras["Камера (Ліфт)"].length === 1 && state.serverRoomChoise !== undefined
   }
 
   return false
