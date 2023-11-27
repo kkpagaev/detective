@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
@@ -15,12 +16,13 @@ export type MapEntry = {
   color?: string
 }
 
+
 export const MapDot = (props: MapEntry) => {
   const coordinates = props.coordinates;
 
   const color = props.color ? props.color : 'black';
 
-  const colorVariants : any = {
+  const colorVariants: any = {
     blue: 'bg-blue-500',
     sky: 'bg-sky-600',
     red: 'bg-red-500',
@@ -35,8 +37,27 @@ export const MapDot = (props: MapEntry) => {
   const handleMouseClick = () => {
     setPopupOpen(!popupOpen);
   }
+  const wrappedRef = useRef(null);
 
-  return <div>
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event: any) {
+      // @ts-ignore
+      if (wrappedRef.current && !wrappedRef.current.contains(event.target) && popupOpen) {
+        setPopupOpen(false);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrappedRef, popupOpen]);
+
+  return <div >
     <div className="absolute justify-center" style={{
       left: `calc(${coordinates.x * 100}% - 1.25rem)`,
       top: `calc(${coordinates.y * 100}% - 1.25rem)`,
@@ -47,14 +68,15 @@ export const MapDot = (props: MapEntry) => {
       <button className={`w-10 h-10 mt-1 rounded-full ${colorVariants[color]}`} style={{
       }} onClick={handleMouseClick} />
     </div>
-    {popupOpen ?
-      <div style={{
+    <div
+      ref={wrappedRef}
+      style={{
+        visibility: popupOpen ? 'visible' : 'hidden',
         left: `calc(${coordinates.x * 100}% - 12rem)`,
         top: `calc(${coordinates.y * 100}% + 3rem)`,
       }} className="absolute z-50" >
-        {props.popup}
-      </div> : null
-    }
+      {props.popup}
+    </div>
   </div>
 }
 
@@ -68,7 +90,7 @@ export const MapPopup = (props: PopupProps) => {
   const { state, setState } = useAppContext();
 
   const [content, setContent] = useState<string>(props.content);
-  const levelItemIndex = state.askedQuestions[state.level-1].findIndex(levelItem => levelItem.title === props.title);
+  const levelItemIndex = state.askedQuestions[state.level - 1].findIndex(levelItem => levelItem.title === props.title);
 
   const onQuestionAsked = (event: React.MouseEvent<HTMLElement>) => {
     const buttonIndex = +event.currentTarget.id.substring(3);
@@ -78,11 +100,11 @@ export const MapPopup = (props: PopupProps) => {
 
     const newLeads = [...state.leads];
 
-    ++stateAskedQuestions[state.level-1][levelItemIndex].nAskedQuestions;
+    ++stateAskedQuestions[state.level - 1][levelItemIndex].nAskedQuestions;
 
     // If a user asks a leading question
     if (
-      state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[buttonIndex].isAsked && 
+      state.askedQuestions[state.level - 1][levelItemIndex].askedQuestions[buttonIndex].isAsked &&
       props.questions[buttonIndex].leadingQuestion !== undefined
     ) {
       const answer = props.questions[buttonIndex].leadingQuestion.answer;
@@ -95,7 +117,7 @@ export const MapPopup = (props: PopupProps) => {
         newLeads.push(newLead);
       }
 
-      stateAskedQuestions[state.level-1].map(levelItem => {
+      stateAskedQuestions[state.level - 1].map(levelItem => {
         if (levelItem.title === props.title) {
           levelItem.askedQuestions[buttonIndex].isLeadingAsked = true;
         }
@@ -113,37 +135,37 @@ export const MapPopup = (props: PopupProps) => {
         newLeads.push(newLead);
       }
 
-      stateAskedQuestions[state.level-1].map(levelItem => {
+      stateAskedQuestions[state.level - 1].map(levelItem => {
         if (levelItem.title === props.title) {
           levelItem.askedQuestions[buttonIndex].isAsked = true;
         }
         return levelItem;
       });
     }
-    setState({ ...state, points: newPoints, leads: newLeads, askedQuestions: stateAskedQuestions});
+    setState({ ...state, points: newPoints, leads: newLeads, askedQuestions: stateAskedQuestions });
   }
 
   const questionsContent = props.questions.map((question, questionIndex) => {
     const questId = props.title[0] + questionIndex;
-    
+
     return (
       <>{
-        state.askedQuestions[state.level-1][levelItemIndex].nAskedQuestions < QUESTION_LIMIT && 
+        state.askedQuestions[state.level - 1][levelItemIndex].nAskedQuestions < QUESTION_LIMIT &&
         (
-          !state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[questionIndex].isAsked || 
-          (question.leadingQuestion && !state.askedQuestions[state.level-1][levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
+          !state.askedQuestions[state.level - 1][levelItemIndex].askedQuestions[questionIndex].isAsked ||
+          (question.leadingQuestion && !state.askedQuestions[state.level - 1][levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
         ) &&
-        <button 
-          onClick={onQuestionAsked} 
-          id={"q_" + questId} 
-          key={questId} 
-          className="rounded border bg-white border-black" 
+        <button
+          onClick={onQuestionAsked}
+          id={"q_" + questId}
+          key={questId}
+          className="rounded border bg-white border-black"
           style={{ paddingLeft: "10px", paddingRight: "10px" }}
         >
           {question.question}
         </button>
       }</>
-      
+
     );
   });
 
@@ -204,7 +226,7 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     <div className="relative">
       {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
       <MapDot coordinates={coordinates} popup={
-        <MapPopup {...{ title: 'title', content: 'content', questions: []}} />} name="test" />
+        <MapPopup {...{ title: 'title', content: 'content', questions: [] }} />} name="test" />
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
     <button onClick={() => {
