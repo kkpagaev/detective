@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
 import { useAppContext } from "./context/app-context";
 
 export const Slider = () => {
   const {state, setState} = useAppContext();
 
-  const [slideValue, setSlideValue] = useState(state.time);
-
-  useEffect(() => {
-    setState({
-      ...state,
-      time: slideValue
-    })
-  }, [slideValue])
+  const setTime = (value: number) => {
+    setState({ ...state, time: value });
+  }
 
   return <div>
     <div className="relative mb-6">
       <label htmlFor="steps-range" className="block mb-2 text-sm font-medium text-gray-900 ">Range steps</label>
-      <input onChange={(e) => setSlideValue(+e.target.value)} value={slideValue} id="steps-range" type="range" min="0" max="8" step="0.5" className="w-full h-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+      <input onChange={(e) => setTime(+e.target.value)} value={state.time} id="steps-range" type="range" min="0" max="8" step="0.5" className="w-full h-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
       <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6"
         style={{
           insetInline: 0,
