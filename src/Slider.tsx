@@ -3,6 +3,8 @@ import { useAppContext } from "./context/app-context";
 export const Slider = () => {
   const {state, setState} = useAppContext();
 
+  const hasHint = state.serverRoomChoise == "video"
+
   const setTime = (value: number) => {
     setState({ ...state, time: value });
   }
@@ -28,7 +30,8 @@ export const Slider = () => {
       >11:00</span>
       <span className="text-sm text-gray-500 dark:text-gray-400 absolute -translate-x-1/2 rtl:translate-x-1/2 -bottom-6"
         style={{
-          insetInlineStart: "calc(3/8 * 100%)"
+          insetInlineStart: "calc(3/8 * 100%)",
+          color: hasHint ? "red" : "rgb(107 114 128 / var(--tw-text-opacity))"
         }}
       >12:00</span>
       <span className="text-sm text-gray-500 dark:text-gray-400 absolute -translate-x-1/2 rtl:translate-x-1/2 -bottom-6"
@@ -36,6 +39,14 @@ export const Slider = () => {
           insetInlineStart: "calc(4/8 * 100%)"
         }}
       >13:00</span>
+      {hasHint &&
+        <span className="text-sm text-gray-500 dark:text-gray-400 absolute -translate-x-1/2 rtl:translate-x-1/2 -bottom-6"
+          style={{
+            insetInlineStart: "calc(9/16 * 100%)",
+            color: "red"
+          }}
+        >13:30</span>
+      }
       <span className="text-sm text-gray-500 dark:text-gray-400 absolute -translate-x-1/2 rtl:translate-x-1/2 -bottom-6"
         style={{
           insetInlineStart: "calc(5/8 * 100%)"
