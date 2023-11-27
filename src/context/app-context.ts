@@ -5,6 +5,7 @@ export type AppState = {
   level: number
   points: number
   leads: Array<string>
+  visitedCameras: Array<string>
   askedQuestions: Array<Array<AskedLevelItem>>
 }
 
@@ -15,13 +16,11 @@ interface AppContextData {
   resetState: () => void
 }
 
-export const defaultState = {
+export const defaultState = <AppState>{
   level: 1,
   points: 0,
   leads: [],
-  visitedCameras: [
-
-  ],
+  visitedCameras: [],
   askedQuestions: [
     [
         {
@@ -120,10 +119,12 @@ export const defaultState = {
 }
 
 export const AppContext = createContext<AppContextData>({
-  state: JSON.parse(JSON.stringify(defaultState)),
+  state: JSON.parse(JSON.stringify(defaultState)) as AppState,
   setState: (state) => {
     console.log(state);
-  }
+  },
+  loaded: false,
+  resetState: () => {},
 });
 
 export const useAppContext = () => useContext(AppContext);
