@@ -23,7 +23,7 @@ interface AppContextData {
 }
 
 export const defaultState = <AppState>{
-  level: 2,
+  level: 1,
   time: 0,
   points: 0,
   leads: [],
