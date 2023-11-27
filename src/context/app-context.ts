@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { AskedLevelItem } from "../Question";
 
 export type AppState = {
+  time: number
   level: number
   points: number
   leads: Array<string>
@@ -18,6 +19,7 @@ interface AppContextData {
 
 export const defaultState = <AppState>{
   level: 1,
+  time: 0,
   points: 0,
   leads: [],
   visitedCameras: [],

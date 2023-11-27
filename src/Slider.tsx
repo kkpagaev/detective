@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppContext } from "./context/app-context";
 
 export const Slider = () => {
-  const [slideValue, setSlideValue] = useState(2.5);
+  const {state, setState} = useAppContext();
+
+  const [slideValue, setSlideValue] = useState(state.time);
+
+  useEffect(() => {
+    setState({
+      ...state,
+      time: slideValue
+    })
+  }, [slideValue])
 
   return <div>
     <div className="relative mb-6">
