@@ -4,7 +4,7 @@ import stairsImage from "./assets/stairs.jpg"
 import elevatorImage from "./assets/elevator.webp"
 import serversImage from "./assets/servers.jpg"
 import catVideo from "./assets/cat.mp4"
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useVisibilityContext } from "./context/VisibilityContextProvider";
 
 
@@ -14,7 +14,7 @@ const cameraNames = {
   SERVERS: "Камера (Серверна)"
 } as const
 
-type CameraName = typeof cameraNames[keyof typeof cameraNames]
+export type CameraName = typeof cameraNames[keyof typeof cameraNames]
 
 
 const defaultCamerasStates: Record<CameraName, {
@@ -38,7 +38,9 @@ const defaultCamerasStates: Record<CameraName, {
 const cameraStates: Record<CameraName, Record<number, {
   text?: string,
   image?: string,
-  video?: string
+  needed?: boolean,
+  video?: string,
+  lead?: string
 }>> = {
   "Камера (Ліфт)": {
     1: {
@@ -46,7 +48,9 @@ const cameraStates: Record<CameraName, Record<number, {
     },
     15: {
       video: catVideo,
-      text: "cat vibing"
+      text: "cat vibing",
+      lead: "cat vibing really hard",
+      needed: true
     }
   },
 
@@ -81,12 +85,20 @@ type Props = {
   name: CameraName
 }
 export const CameraPopup = (props: Props) => {
+  const { state, setState, addLead } = useAppContext();
   const cameraState = useCameraState(props.name);
   const isVisible = useVisibilityContext();
 
   useEffect(() => {
-    if (isVisible) {
-      // alert("Camera popup")
+    if (!isVisible) return
+
+    if (cameraState.lead) {
+      addLead(cameraState.lead);
+    }
+    if (cameraState.needed) {
+      if (!state.visitedCameras[props.name].includes(state.time)) {
+        setState({ ...state, visitedCameras: { ...state.visitedCameras, [props.name]: [...state.visitedCameras[props.name], state.time] } })
+      }
     }
   }, [isVisible])
 

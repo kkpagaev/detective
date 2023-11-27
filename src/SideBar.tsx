@@ -10,10 +10,18 @@ export type LeadEntry = {
 
 const useCanGoToTheNextLevel = () => {
   const { state } = useAppContext();
-  const askedAllQuestions = state.askedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < QUESTION_LIMIT).length === 0;
-  if (state.points >= POINTS_REQUIREMENT && askedAllQuestions) {
-    return true
+  if (state.level === 1) {
+    const askedAllQuestions = state.askedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < QUESTION_LIMIT).length === 0;
+    if (state.points >= POINTS_REQUIREMENT && askedAllQuestions) {
+      return true
+    }
+    return false
   }
+
+  if(state.level === 2) {
+    return state.visitedCameras["Камера (Ліфт)"].length === 1
+  }
+
   return false
 }
 
@@ -29,8 +37,7 @@ export const SideBar = (props: LeadEntry) => {
 
   // Transition to a new level only if all questions were asked and a sufficient number of points was scored
   const onNewLevel = () => {
-    const askedAllQuestions = state.askedQuestions.filter(askedLevelItem => askedLevelItem.nAskedQuestions < QUESTION_LIMIT).length === 0;
-    if (state.points >= POINTS_REQUIREMENT && askedAllQuestions) {
+    if (canGoToTheNextLevel) {
       setState({ ...state, points: 0, level: state.level + 1 });
     }
   }

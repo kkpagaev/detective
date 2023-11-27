@@ -29,8 +29,16 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
     setState(JSON.parse(JSON.stringify(defaultState)));
   };
 
+  const addLead = (lead: string) => {
+    if (state.leads.includes(lead)) {
+      return;
+    }
+
+    setState({ ...state, leads: [...state.leads, lead] });
+  }
+
   return (
-    <AppContext.Provider value={{ state, setState, loaded, resetState }}>
+    <AppContext.Provider value={{ state, setState, loaded, resetState, addLead }}>
       {children}
     </AppContext.Provider>
   );

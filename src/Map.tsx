@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
 import { Popup } from "./Popup";
-import { VisibilityContextProvider, useVisibilityContext } from "./context/VisibilityContextProvider";
+import { VisibilityContextProvider } from "./context/VisibilityContextProvider";
 
 // float 0 to 1
 type Coordinates = {
