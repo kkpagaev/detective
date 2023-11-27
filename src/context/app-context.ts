@@ -7,6 +7,7 @@ export type AppState = {
   leads: Array<string>
   visitedCameras: Array<string>
   askedQuestions: Array<AskedLevelItem>
+  askedQuestionsThree: Array<AskedLevelItemThree>
 }
 
 interface AppContextData {
@@ -112,6 +113,56 @@ export const defaultState = <AppState>{
       }
     ]
   }
+  ],
+  askedQuestionsThree: [
+    {
+      title: "Максим",
+      nAskedQuestions: 0,
+      askedQuestions: [
+        {
+          isAsked: false,
+          isLeadingAsked: {
+            isAsked: false,
+            isLeadingAsked: {
+              isAsked: false
+            }
+          }
+        },
+        {
+          isAsked: false,
+          isLeadingAsked: {
+            isAsked: false,
+            isLeadingAsked: {
+              isAsked: false
+            }
+          }
+        }
+      ]
+    },
+    {
+      title: "Софія",
+      nAskedQuestions: 0,
+      askedQuestions: [
+        {
+          isAsked: false,
+          isLeadingAsked: {
+            isAsked: false,
+            isLeadingAsked: {
+              isAsked: false,
+              isLeadingAsked: {
+                isAsked: false
+              }
+            }
+          }
+        },
+        {
+          isAsked: false,
+          isLeadingAsked: {
+            isAsked: false,
+          }
+        }
+      ]
+    }
   ]
 }
 

@@ -148,13 +148,13 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
 
   const questionsContent = props.questions.map((question, questionIndex) => {
     const questId = props.title[0] + questionIndex;
-
+    const stateAskedQuestions = state.askedQuestions[levelItemIndex];
     return (
       <>{
-        state.askedQuestions[levelItemIndex].nAskedQuestions < QUESTION_LIMIT &&
+        stateAskedQuestions.nAskedQuestions < QUESTION_LIMIT &&
         (
-          !state.askedQuestions[levelItemIndex].askedQuestions[questionIndex].isAsked ||
-          (question.leadingQuestion && !state.askedQuestions[levelItemIndex].askedQuestions[questionIndex].isLeadingAsked)
+          !stateAskedQuestions.askedQuestions[questionIndex].isAsked ||
+          (question.leadingQuestion && !stateAskedQuestions.askedQuestions[questionIndex].isLeadingAsked)
         ) &&
         <button
           onClick={onQuestionAsked}
