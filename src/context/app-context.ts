@@ -8,6 +8,7 @@ export type AppState = {
   level: number
   points: number
   leads: Array<string>
+  serverRoomChoise?: "audio" | "video",
   visitedCameras: Record<CameraName, Array<number>>
   askedQuestions: Array<AskedLevelItem>
   askedQuestionsThree: Array<AskedLevelItemThree>
@@ -22,7 +23,7 @@ interface AppContextData {
 }
 
 export const defaultState = <AppState>{
-  level: 1,
+  level: 2,
   time: 0,
   points: 0,
   leads: [],

@@ -10,6 +10,7 @@ import { questions, questionsThree } from "./Question";
 import { useAppContext } from "./context/app-context";
 import { CameraPopup } from "./CameraPopup";
 import { InterrogationEntry, InterrogationPopup } from "./Interrogation";
+import { ServerPopup } from "./ServerPopup";
 
 //Array<Array<MapEntry>>
 const questionMapEntries = [
@@ -148,17 +149,15 @@ const camerasOne = [
       name="Камера (Сходи)"
     />
   },
-  // {
-  //   name: 'Сервер',
-  //   coordinates: {
-  //     x: 0.2995385773130545,
-  //     y: 0.8994413407821229
-  //   },
-  //   color: "yellow",
-  //   popup: <CameraPopup 
-  //     name="Сервер"
-  //   />
-  // },
+  {
+    name: 'Сервер',
+    coordinates: {
+      x: 0.2995385773130545,
+      y: 0.8994413407821229
+    },
+    color: "yellow",
+    popup: <ServerPopup />
+  },
   {
     name: 'Камера (Ліфт)',
     coordinates: {
