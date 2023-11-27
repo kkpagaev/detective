@@ -3,6 +3,7 @@ import { useAppContext } from "./context/app-context";
 import stairsImage from "./assets/stairs.jpg"
 import elevatorImage from "./assets/elevator.webp"
 import serversImage from "./assets/servers.jpg"
+import catVideo from "./assets/cat.mp4"
 
 const cameraNames = {
   STAIRS: "Камера (Сходи)",
@@ -40,6 +41,10 @@ const cameraStates: Record<CameraName, Record<number, {
     1: {
       text: "Camera 1 - Motion detected",
     },
+    15: {
+      video: catVideo,
+      text: "cat vibing"
+    }
   },
 
   "Камера (Сходи)": {
@@ -60,6 +65,8 @@ function useCameraState(name: CameraName) {
   const camera = cameraStates[name]
   const cameraState = camera[state.time * 2]
   const defauctState = defaultCamerasStates[name]
+  console.log(state.time * 2);
+  
 
   return {
     ...defauctState,
@@ -71,14 +78,11 @@ type Props = {
   name: CameraName
 }
 export const CameraPopup = (props: Props) => {
-  const { state } = useAppContext();
   const cameraState = useCameraState(props.name);
 
   return <Popup>
     <p>
-      {state.time}
-      CAMERA
-      <img src={cameraState.image} />
+      {cameraState.video ? <video controls src={cameraState.video} />: <img src={cameraState.image} />}
       {cameraState.text}
     </p>
   </Popup>

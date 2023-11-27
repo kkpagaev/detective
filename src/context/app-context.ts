@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { AskedLevelItem } from "../Question";
 
 export type AppState = {
+  // from 0 to 8
   time: number
   level: number
   points: number
