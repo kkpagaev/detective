@@ -68,8 +68,10 @@ export const MapDot = (props: MapEntry) => {
       <div className="pr-2 pl-2 text-center relative z-30 bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
-      <button className={`w-10 h-10 mt-1 rounded-full ${colorVariants[color]}`} style={{
-      }} onClick={handleMouseClick} />
+      <button className={`w-10 h-10 transition-all mt-1 rounded-full ${colorVariants[color]}`} style={popupOpen?{
+        border: '2px solid black',
+        boxShadow: '0 0 0 2px black',
+      }: {}} onClick={handleMouseClick} />
       <VisibilityContextProvider isVisible={popupOpen}>
         <div className="relative">
           <div
