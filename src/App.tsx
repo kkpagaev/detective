@@ -8,7 +8,7 @@ import { useCanGoToTheNextLevel, getLevelName } from './SideBar'
 import { useAppContext } from './context/app-context'
 
 function App() {
-  const [help, setHelp] = useState(true);
+  const [help, setHelp] = useState(false);
   const canGoToTheNextLevel = useCanGoToTheNextLevel();
   const { state, setState } = useAppContext();
 

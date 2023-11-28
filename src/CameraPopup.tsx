@@ -10,6 +10,7 @@ import sofaVideo from "./assets/elevator_sofa.mp4"
 import { ReactNode, useEffect } from "react";
 import { useVisibilityContext } from "./context/VisibilityContextProvider";
 import { textColorVariants } from "./Question";
+import { MaxCamera } from "./MaxCamera";
 
 
 const cameraNames = {
@@ -111,6 +112,10 @@ export const CameraPopup = (props: Props) => {
   const { state, setState } = useAppContext();
   const cameraState = useCameraState(props.name);
   const isVisible = useVisibilityContext();
+
+  if(state.time === 4.5 && props.name === "Камера (Серверна)") {
+    return <MaxCamera />
+  }
 
   useEffect(() => {
     if (!isVisible) return
