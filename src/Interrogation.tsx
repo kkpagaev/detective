@@ -99,8 +99,8 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
   });
 
   return <Popup className="mr-1 ml-1" title={props.title}>
-    {props.image && <img className="w-1/2 ml-auto mr-auto max-h-[250px]" src={props.image} />}
-    <p className="min-h-[120px]">
+    {props.image && <img className="ml-auto mr-auto max-h-[250px] min-h-[250px]" src={props.image} />}
+    <p className="min-h-[140px]">
       <TypeAnimation 
         key={content}
         sequence={[

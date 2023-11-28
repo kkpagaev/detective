@@ -25,9 +25,9 @@ export const LeadsList = () => {
         Тоді Софія спішила додому по особистим справам, тому вийшла практично у той самий час, що й сталось викрадення інформації.
         Максиму та Петру вдалось втекти, вони наразі у розшуку.
     </p>;
-    const initialContent = <div className="flex flex-col gap-6">
+    const initialContent = <div className="flex flex-col gap-2">
         <div className="w-full h-1/8 text-2xl text-center lead-header">Зачіпки</div>
-        <ul className="w-full h-5/8 flex flex-col justify-start text-sm mb-2">
+        <ul className="w-full h-5/8 flex flex-col justify-start text-sm">
             {state.leads.map((lead, index) => {
             return <li key={index}>
                 {lead}

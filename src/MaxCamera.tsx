@@ -17,7 +17,7 @@ export const MaxCamera = () => {
     setState({
       ...state,
       visitedCameras: { ...state.visitedCameras, "Камера (Серверна)": [...state.visitedCameras["Камера (Серверна)"], MAX_CAMERA_TIME] },
-      leads: [...state.leads, <p>{"13:30 - Чоловік в червоній сорочці, схожий на "}<span className={textColorVariants.red}>{"Максима"}</span>{", вставив флешку в сервер"}</p>]
+      leads: [...state.leads, <p>13:30 - Чоловік схожий на <span className={textColorVariants.red}>Максима</span>, вставив флешку в сервер.</p>]
     })
   }
 
@@ -35,7 +35,7 @@ export const MaxCamera = () => {
     {showProgress && <ProgressBar afterEnd={afterEnd} />}
     {visited && <div>
       <video src={maxVideo} loop autoPlay muted />
-      <p>{"13:30 - Чоловік в червоній сорочці, схожий на "}<span className={textColorVariants.red}>{"Максима"}</span>{", вставив флешку в сервер"}</p>
+      <p>{"13:30 - Чоловік у червоній сорочці вставив флешку в сервер"}</p>
     </div>}
   </Popup>
 }
