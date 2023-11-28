@@ -125,7 +125,7 @@ type Props = {
 export const InterrogationComponent = ({ mapEntries }: Props) => {
 
   return <div>
-    <div className="relative flex">
+    <div className="relative flex justify-between md:p-20">
       {mapEntries[0].card}
       {mapEntries[1].card}
     </div>

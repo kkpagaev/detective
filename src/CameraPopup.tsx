@@ -27,15 +27,15 @@ const defaultCamerasStates: Record<CameraName, {
   image: string,
 }> = {
   "Камера (Ліфт)": {
-    text: "No motion",
+    text: "",
     image: elevatorImage
   },
   "Камера (Сходи)": {
-    text: "No motion",
+    text: "",
     image: stairsImage
   },
   "Камера (Серверна)": {
-    text: "No motion",
+    text: "",
     image: serversImage
   }
 }
@@ -50,9 +50,6 @@ const cameraStates: Record<CameraName, Record<number, {
   // textIfLogsAreChosen?: string,
 }>> = {
   "Камера (Ліфт)": {
-    1: {
-      text: "Camera 1 - Motion detected",
-    },
     9: {
         text: "13:35 - Софія покидає офіс",
         lead: <p>13:35 - <span className={textColorVariants.orange}>Софія</span> одразу покинула офіс після викрадення інформації з серверу</p>,
@@ -73,11 +70,8 @@ const cameraStates: Record<CameraName, Record<number, {
     },
   },
   "Камера (Серверна)": {
-    1: {
-      text: "Camera 3 - Motion detected",
-    },
     6: {
-        text: "Camera 3 - Motion detected",
+        text: "Олександр працює за ноутбуком",
         video: alexVideo,
         needed: true
     },
