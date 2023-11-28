@@ -1,8 +1,8 @@
 import { Popup } from "./Popup"
 import { useAppContext } from "./context/app-context";
 import stairsImage from "./assets/stairs.jpg"
-import elevatorImage from "./assets/elevator.webp"
-import serversImage from "./assets/servers.jpg"
+import elevatorImage from "./assets/elevator.png"
+import serversImage from "./assets/servers.png"
 import catVideo from "./assets/cat.mp4"
 import { useEffect } from "react";
 import { useVisibilityContext } from "./context/VisibilityContextProvider";
