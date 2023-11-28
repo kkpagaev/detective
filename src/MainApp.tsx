@@ -26,12 +26,7 @@ export const Main = () => {
   if(state.level === 3) {
     return (
       <div className='container m-auto grid grid-cols-3'>
-        <div className=''>
-          <SideBar
-            leadDescription='bar'
-          />
-        </div>
-        <div className="bg-gray-100 p-8 col-span-2 h-screen">
+        <div className="bg-gray-100 p-8 col-span-3 h-screen">
           <InterrogationComponent mapEntries={mapEntries} />
         </div>
       </div>
@@ -41,11 +36,6 @@ export const Main = () => {
   if(state.level === 4) {
     return (
       <div className='container m-auto grid grid-cols-3'>
-        <div className=''>
-          <SideBar
-            leadDescription='bar'
-          />
-        </div>
         <div className="bg-gray-100 p-8 col-span-2 h-screen">
           <LeadsList />
         </div>
@@ -55,19 +45,10 @@ export const Main = () => {
   
   return (
     <div className='container m-auto grid grid-cols-3'>
-      <div className=''>
-        <SideBar
-          leadDescription='bar'
-        />
-      </div>
-      <div className="bg-gray-100 p-8 col-span-2 h-screen">
+      <div className="bg-gray-100 p-8 col-span-3 h-screen">
         <MapComponent mapEntries={mapEntries} imageUrl={officeMap} />
         {state.level === 2 ? <Slider /> : null}
       </div>
     </div>
   );
 }
-
-// 13 00 - максим зайшов в серверну кімнату і вставив флешку
-// 13 04 - софія спускається на ліфті
-// 9 00 -- 13 00 ----- 18 00

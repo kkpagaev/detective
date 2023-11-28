@@ -226,11 +226,11 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
   return <div>
     <div className="relative">
       {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
-      <MapDot coordinates={coordinates} popup={
-        <QuestionPopup {...{ title: 'title', content: 'content', questions: [] }} />} name="test" />
+      {/*<MapDot coordinates={coordinates} popup={
+        <QuestionPopup {...{ title: 'title', content: 'content', questions: [] }} />} name="test" />*/}
       <img src={imageUrl} onClick={handleMouseClick} className="w-full border-2 border-black" style={{ maxWidth: '100%' }} ref={ref} />
     </div>
-    <button onClick={() => {
+    {/*<button onClick={() => {
       navigator.clipboard.writeText(`
   coordinates: {
     x: ${coordinates.x},
@@ -244,6 +244,6 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     </button>
     <p>
       Cursor coordinates: {coordinates.x}, {coordinates.y}
-    </p>
+    </p>*/}
   </div>
 }
