@@ -26,7 +26,7 @@ function App() {
       {help && <Help close={() => setHelp(false)} />}
       <Header />
       <div className='container m-auto xl:pl-24 xl:pr-24 grid grid-cols-3'>
-        <div className="bg-zinc-300 xl:p-8 col-span-3">
+        <div className="bg-zinc-300 xl:p-2 col-span-3">
           <Main />
         </div>
       </div>

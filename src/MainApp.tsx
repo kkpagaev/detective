@@ -25,8 +25,10 @@ export const Main = () => {
 
   return (
     <>
+      <div className="mb-16">
+        {state.level === 2 ? <Slider /> : null}
+      </div>
       <MapComponent mapEntries={mapEntries as MapEntry[]} imageUrl={officeMap} />
-      {state.level === 2 ? <Slider /> : null}
     </>
   );
 }

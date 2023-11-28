@@ -246,7 +246,7 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
   };
 
   return <div>
-    <div className="relative">
+    <div className="relative lg:pr-16 lg:pl-16">
       {mapEntries.map((entry, i) => <MapDot key={i} {...entry} />)}
       {/*<MapDot coordinates={coordinates} popup={
         <QuestionPopup {...{ title: 'title', content: 'content', questions: [] }} />} name="test" />*/}
