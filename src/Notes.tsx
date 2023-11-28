@@ -6,7 +6,7 @@ type Props = {
 export const Notes = ({ close }: Props) => {
   const { state } = useAppContext();
 
-  return <div className="h-128 border-black border-2 p-8 w-96 overflow-y-auto bg-yellow-200">
+  return <div className="h-128 border-black border-2 p-8 w-96 overflow-y-auto z-50 bg-yellow-200">
     <div className="relative">
       <div className="absolute right-0 text-xl">
         <button onClick={close}>X</button>

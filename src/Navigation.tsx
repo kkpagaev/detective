@@ -13,7 +13,7 @@ export const Navigation = ({ onNewLevel }: Props) => {
   const [helpVisible, setHelpVisible] = useState(false);
   const canGoToTheNextLevel = useCanGoToTheNextLevel();
 
-  return <div className="fixed bottom-0 w-full">
+  return <div className="fixed bottom-0 w-full z-50">
     <div className="container m-auto flex justify-end gap-2">
       <button className="bg-yellow-500 transition-all hover:bg-yellow-700 text-zinc-800 font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setNoteVisible(!noteVisible)}>
         Зачіпки
@@ -32,12 +32,12 @@ export const Navigation = ({ onNewLevel }: Props) => {
           </button>
         </div>
       }
-      <div className="absolute transition-all duration-300" style={{
+      <div className="absolute transition-all duration-300 z-50" style={{
         bottom: noteVisible ? 0 : "-32rem"
       }}>
         <Notes close={() => setNoteVisible(false)} />
       </div>
-      {state.level !== 4 && <div className="absolute transition-all duration-300" style={{
+      {state.level !== 4 && <div className="absolute transition-all duration-300 z-50" style={{
         bottom: helpVisible ? 0 : "-32rem"
       }}>
         <HelpNote close={() => setHelpVisible(false)} />

@@ -28,8 +28,9 @@ export const Help = ({ close }: Props) => {
 
   if (!help) return <></>;
 
-  return <div className="fixed w-full text-zinc-200 h-full pr-64 pl-64 pt-32 pb-32 bg-sky-50 z-50" style={{
+  return <div className="fixed w-full text-zinc-200 h-full md:pr-64 md:pl-64 pt-32 pb-32 bg-sky-50" style={{
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 100
   }}>
     <div className="w-full h-full bg-gray-900 rounded shadow-white p-12">
       <div className="relative">
@@ -39,8 +40,8 @@ export const Help = ({ close }: Props) => {
           <button onClick={close}>X</button>
         </div>
 
-        <div className="p-12">
-          <h2 className="font-bold text-lg mb-12" style={{
+        <div className="md:p-12">
+          <h2 className="font-bold text-lg mb-12 w-2/3" style={{
             fontSize: "2rem",
           }}>
             {help.title}
