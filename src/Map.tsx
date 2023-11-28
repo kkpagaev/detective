@@ -27,13 +27,13 @@ export const MapDot = (props: MapEntry) => {
   const color = props.color ? props.color : 'black';
 
   const colorVariants: any = {
-    blue: 'blue-500',
-    sky: 'sky-600',
-    red: 'red-500',
-    yellow: 'yellow-400',
-    rose: 'rose-300',
-    emerald: 'emerald-300',
-    orange: 'orange-400',
+    blue: 'bg-blue-500',
+    sky: 'bg-sky-600',
+    red: 'bg-red-500',
+    yellow: 'bg-yellow-400',
+    rose: 'bg-rose-300',
+    emerald: 'bg-emerald-300',
+    orange: 'bg-orange-400',
     black: 'black',
   }
 
@@ -69,7 +69,7 @@ export const MapDot = (props: MapEntry) => {
       <div className="pr-2 pl-2 text-center relative z-30 bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
-      <button className={`w-10 h-10 transition-all mt-1 rounded-full bg-${colorVariants[color]}`} style={popupOpen ? {
+      <button className={`w-10 h-10 transition-all mt-1 rounded-full ${colorVariants[color]}`} style={popupOpen ? {
         border: '2px solid black',
         boxShadow: '0 0 0 2px black',
       } : {}} onClick={handleMouseClick} />
@@ -188,19 +188,23 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
   });
 
   return <Popup title={props.title}>
-    {props.image && <img className="w-1/2 m-auto" src={props.image} />}
-    <p>
-      {isVisible || !typing ? <TypeAnimation key={content}
-        sequence={[
-          content,
-          () => setTyping(false)
-        ]}
-        speed={70}
-        repeat={0}
-        cursor={false}
-      /> : content}
-    </p>
-    { !typing && <div>{questionsContent}</div> }
+    <div className="">
+      {props.image && <img className="w-1/2 m-auto mb-4" src={props.image} />}
+      <div className="h-full">
+        <div>
+          {isVisible || !typing ? <TypeAnimation key={content}
+            sequence={[
+              content,
+              () => setTyping(false)
+            ]}
+            speed={70}
+            repeat={0}
+            cursor={false}
+          /> : content}
+        </div>
+        {!typing && <div>{questionsContent}</div>}
+      </div>
+    </div>
   </Popup>
 }
 
