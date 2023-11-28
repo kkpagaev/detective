@@ -1,3 +1,4 @@
+import { levelHelp } from "./Help";
 import { useAppContext } from "./context/app-context"
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
 }
 export const HelpNote = ({ close }: Props) => {
   const { state } = useAppContext();
+  const help = levelHelp[state.level];
 
   return <div className="h-128 border-black border-2 p-8 w-96 overflow-y-auto bg-red-200">
     <div className="relative">
@@ -12,10 +14,10 @@ export const HelpNote = ({ close }: Props) => {
         <button onClick={close}>X</button>
       </div>
       <h2 className="font-bold text-lg mb-5"> 
-        Допомога
+        {help.title}
       </h2>
       <div className="flex flex-col gap-4">
-        {state.leads.map(lead => <p>{lead}</p>)}
+        {help.content}
       </div>
     </div>
   </div>
