@@ -12,7 +12,6 @@ type InterrogationPopupProps = {
 }
 export const InterrogationPopup = (props: InterrogationPopupProps) => {
   const { state, setState } = useAppContext();
-  const [typing, setTyping] = useState<boolean>(true);
 
   const [content, setContent] = useState<string>(props.content);
   const levelItemIndex = state.askedQuestionsThree.findIndex(levelItem => levelItem.title === props.title);
@@ -108,6 +107,7 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
         ]}
         speed={70}
         repeat={0}
+        cursor={false}
       />
     </p>
     <div>{questionsContent}</div>

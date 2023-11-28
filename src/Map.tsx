@@ -195,6 +195,7 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
         ]}
         speed={70}
         repeat={0}
+        cursor={false}
       /> : content}
     </p>
     { !typing && <div>{questionsContent}</div> }
