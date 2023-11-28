@@ -88,7 +88,7 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
           onClick={onQuestionAsked}
           id={"q_" + questId}
           key={questId}
-          className="rounded border bg-white border-black"
+          className="rounded border bg-white border-black w-full mt-1"
           style={{ paddingLeft: "10px", paddingRight: "10px" }}
         >
           {currentQuestionContent.question}
@@ -98,9 +98,9 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
     );
   });
 
-  return <Popup title={props.title}>
-    {props.image && <img className="w-1/2 m-auto" src={props.image} />}
-    <p>
+  return <Popup className="mr-1 ml-1" title={props.title}>
+    {props.image && <img className="w-1/2 ml-auto mr-auto max-h-[250px]" src={props.image} />}
+    <p className="min-h-[120px]">
       <TypeAnimation 
         key={content}
         sequence={[
@@ -111,7 +111,7 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
         cursor={false}
       />
     </p>
-    <div>{questionsContent}</div>
+    <div className="h-1/6">{questionsContent}</div>
   </Popup>
 }
 

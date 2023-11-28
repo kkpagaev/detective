@@ -177,7 +177,7 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
           onClick={onQuestionAsked}
           id={"q_" + questId}
           key={questId}
-          className="rounded border bg-white border-black"
+          className="rounded border bg-white border-black w-full mt-1"
           style={{ paddingLeft: "10px", paddingRight: "10px" }}
         >
           {question.question}
