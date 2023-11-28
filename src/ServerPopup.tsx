@@ -12,7 +12,7 @@ const ServerAudio = () => {
 const ServerVideo = () => {
   return <div>
     Логи показали що на сервер заходив Олександр в 12:00 і Максим в 13:30
-    <video src={logsVideo} autoPlay controls muted />
+    <video src={logsVideo} autoPlay muted loop />
   </div>
 }
 
@@ -20,7 +20,9 @@ const ServerChoise = () => {
   const { state, setState } = useAppContext();
 
   const chooseVideo = () => {
-    setState({ ...state, serverRoomChoise: "video", points: state.points + 10 })
+    setState({ ...state, serverRoomChoise: "video", points: state.points + 10,
+      leads: [...state.leads, "13:30 - Максим заходив в серверну кімнату"]
+    })
   }
 
   return <div className="flex gap-4 justify-between">

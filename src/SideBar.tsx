@@ -59,6 +59,7 @@ export const SideBar = (props: LeadEntry) => {
     <h2 className="flex justify-center text-lg">
       Sidebar
     </h2>
+    {state.time}
     <div>
       <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={resetState}>
         RESET STATE
@@ -80,6 +81,7 @@ export const SideBar = (props: LeadEntry) => {
     <div className="">
       <p>Points: {state.points}</p>
       <p>Level: {state.level} (<b>{state.levelName}</b>)</p>
+      {state.leads.map(lead => <p>{lead}</p>)}
 
     </div>
 

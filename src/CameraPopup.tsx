@@ -4,6 +4,9 @@ import stairsImage from "./assets/stairs.jpg"
 import elevatorImage from "./assets/elevator.png"
 import serversImage from "./assets/servers.png"
 import catVideo from "./assets/cat.mp4"
+import alexVideo from "./assets/server_alex.mp4"
+import maxVideo from "./assets/server_max.mp4"
+import sofaVideo from "./assets/elevator_sofa.mp4"
 import { useEffect } from "react";
 import { useVisibilityContext } from "./context/VisibilityContextProvider";
 
@@ -41,10 +44,18 @@ const cameraStates: Record<CameraName, Record<number, {
   needed?: boolean,
   video?: string,
   lead?: string
+  // leadIfLogsAreChosen?: string,
+  // textIfLogsAreChosen?: string,
 }>> = {
   "Камера (Ліфт)": {
     1: {
       text: "Camera 1 - Motion detected",
+    },
+    9: {
+        text: "13:35 - Софія покидає офіс",
+        lead: "13:35 - Софія одразу покинула офіс після викрадення інформації з серверу",
+        video: sofaVideo,
+        needed: true
     },
     15: {
       video: catVideo,
@@ -62,6 +73,17 @@ const cameraStates: Record<CameraName, Record<number, {
   "Камера (Серверна)": {
     1: {
       text: "Camera 3 - Motion detected",
+    },
+    6: {
+        text: "Camera 3 - Motion detected",
+        video: alexVideo,
+        needed: true
+    },
+    9: {
+        text: "13:30 - Чоловік в червоній сорочці вставив флешку в сервер",
+        lead: "13:30 - Чоловік в червоній сорочці вставив флешку в сервер",
+        video: maxVideo,
+        needed: true
     },
   }
 
@@ -106,7 +128,7 @@ export const CameraPopup = (props: Props) => {
 
   return <Popup>
     <div>
-      {cameraState.video ? <video controls src={cameraState.video} autoPlay muted /> : <img src={cameraState.image} />}
+      {cameraState.video ? <video src={cameraState.video} loop autoPlay muted /> : <img src={cameraState.image} />}
       {cameraState.text}
     </div>
   </Popup>
