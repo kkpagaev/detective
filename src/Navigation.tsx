@@ -8,13 +8,13 @@ type Props = {
   onNewLevel: () => void
 }
 export const Navigation = ({ onNewLevel }: Props) => {
-  const { resetState, state } = useAppContext();
+  const { state } = useAppContext();
   const [noteVisible, setNoteVisible] = useState(false);
   const [helpVisible, setHelpVisible] = useState(false);
   const canGoToTheNextLevel = useCanGoToTheNextLevel();
 
   return <div className="fixed bottom-0 w-full z-50">
-    <div className="container m-auto flex justify-end gap-2">
+    <div className="container m-auto flex justify-end gap-2 pr-28">
       {
         canGoToTheNextLevel &&
         <div>
@@ -29,9 +29,6 @@ export const Navigation = ({ onNewLevel }: Props) => {
       {state.level !== 4 && <button className="bg-red-500 transition-all hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setHelpVisible(!helpVisible)}>
         Допомога
       </button>}
-      <button className="bg-red-500 transition-all hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={resetState}>
-        RESET STATE
-      </button>
       <div className="absolute transition-all duration-300 z-50" style={{
         bottom: noteVisible ? 0 : "-32rem"
       }}>
