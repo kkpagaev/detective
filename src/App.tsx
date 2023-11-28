@@ -1,5 +1,6 @@
 import './App.css'
 import { Main } from './MainApp'
+import { Navigation } from './Navigation'
 import { AppContextProvider } from './context/AppContextProvider'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
             <Main />
           </div>
         </div>
+        <Navigation />
       </AppContextProvider>
     </>
   )

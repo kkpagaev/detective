@@ -265,6 +265,5 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     <p>
       Cursor coordinates: {coordinates.x}, {coordinates.y}
     </p>*/}
-    <SideBar leadDescription={"foo"} />
   </div>
 }
