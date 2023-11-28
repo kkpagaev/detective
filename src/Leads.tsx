@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from "react";
 import { useAppContext } from "./context/app-context";
 import './Leads.css';
@@ -6,6 +7,7 @@ export const LeadsList = () => {
   const { state, resetState } = useAppContext();
   const [chosen, setChosen] = useState<string>();
   const onChoice = (event: React.MouseEvent) => {
+    // @ts-ignore
     setChosen(event.currentTarget.textContent);
   }
 

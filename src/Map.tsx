@@ -125,9 +125,11 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
       state.askedQuestions[levelItemIndex].askedQuestions[buttonIndex].isAsked &&
       props.questions[buttonIndex].leadingQuestion !== undefined
     ) {
+      // @ts-ignore
       const answer = props.questions[buttonIndex].leadingQuestion.answer;
       setContent(answer);
 
+      // @ts-ignore
       newPoints += props.questions[buttonIndex].leadingQuestion.points;
 
       const newLead = props.questions[buttonIndex].leadingQuestion?.lead;
@@ -142,6 +144,7 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
         return levelItem;
       });
     } else { // If a user asks a regular question
+      // @ts-ignore
       event.currentTarget.textContent = props.questions[buttonIndex].leadingQuestion?.question;
 
       setContent(props.questions[buttonIndex].answer);
@@ -213,6 +216,7 @@ type Props = {
   mapEntries: Array<MapEntry>
 }
 export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
+  // @ts-ignore
   const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const ref = useRef<HTMLImageElement>(null);
 

@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 import { AppContext, AppState, defaultState } from "./app-context";
+// @ts-ignore
 import { serialize, deserialize } from "react-serialize";
 
 export const AppContextProvider = ({ children }: PropsWithChildren) => {

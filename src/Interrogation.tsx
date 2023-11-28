@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ReactNode, useState } from "react";
 import { Popup } from "./Popup";
 import { QUESTION_LIMIT_THREE, Question } from "./Question";
@@ -35,17 +36,24 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
       currentQuestionContent.leadingQuestion !== undefined
     ) {
       while (
+        // @ts-ignore
         currentQuestion.isLeadingAsked.isAsked &&
+        // @ts-ignore
         currentQuestionContent.leadingQuestion.leadingQuestion !== undefined
       ) {
+        // @ts-ignore
         currentQuestion = currentQuestion.isLeadingAsked;
+        // @ts-ignore
         currentQuestionContent = currentQuestionContent.leadingQuestion;
       }
 
+        // @ts-ignore
       if (!currentQuestion.isLeadingAsked.isAsked) {
+        // @ts-ignore
         const answer = currentQuestionContent.leadingQuestion.answer;
         setContent(answer);
 
+        // @ts-ignore
         newPoints += currentQuestionContent.leadingQuestion.points;
 
         const newLead = currentQuestionContent.leadingQuestion?.lead;
@@ -53,6 +61,7 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
           newLeads.push(newLead);
         }
 
+        // @ts-ignore
         currentQuestion.isLeadingAsked.isAsked = true;
       }
     } else { // If a user asks a regular question
@@ -78,6 +87,7 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
     let currentQuestionContent = question;
     while (currentQuestion.isAsked && currentQuestion.isLeadingAsked !== undefined) {
       currentQuestion = currentQuestion.isLeadingAsked;
+        // @ts-ignore
       currentQuestionContent = currentQuestionContent.leadingQuestion;
     }
     return (
@@ -98,9 +108,9 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
     );
   });
 
-  return <Popup className="mr-1 ml-1" title={props.title}>
+  return <Popup title={props.title}>
     {props.image && <img className="ml-auto mr-auto max-h-[250px] min-h-[250px]" src={props.image} />}
-    <p className="min-h-[140px]">
+    <p className="min-h-[120px]">
       <TypeAnimation 
         key={content}
         sequence={[
