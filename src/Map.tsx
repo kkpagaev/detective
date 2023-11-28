@@ -4,6 +4,7 @@ import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
 import { Popup } from "./Popup";
 import { VisibilityContextProvider } from "./context/VisibilityContextProvider";
+import { SideBar } from "./SideBar";
 
 // float 0 to 1
 type Coordinates = {
@@ -64,7 +65,7 @@ export const MapDot = (props: MapEntry) => {
       left: `calc(${coordinates.x * 100}% - 1.25rem)`,
       top: `calc(${coordinates.y * 100}% - 1.25rem)`,
     }}>
-      <div className="pr-2 pl-2 text-center relative bg-gray-100 border-gray-500 border border-10" style={{
+      <div className="pr-2 pl-2 text-center relative z-30 bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
       <button className={`w-10 h-10 mt-1 rounded-full ${colorVariants[color]}`} style={{
@@ -75,12 +76,11 @@ export const MapDot = (props: MapEntry) => {
             ref={wrappedRef}
             style={{
               visibility: popupOpen ? 'visible' : 'hidden',
-              left: coordinates.x <= 0.5 ? '18%' : undefined,
+              left: coordinates.x <= 0.5 ? '-68%' : undefined,
               right:coordinates.x > 0.5 ?  `82%` : undefined,
               // top: "-200%",
               // left: `18%`,
-              top: coordinates.y < 0.5 ? `calc(${coordinates.y * 100}% - 1.25rem)` : undefined,
-              bottom: coordinates.y >= 0.5 ? `calc(${coordinates.y * 100}% + 1.25rem)` : undefined,
+              top:  `calc(${coordinates.y * 100}% - 1.25rem)`,
             }} className="absolute z-50" >
             {props.popup}
           </div>
@@ -251,5 +251,6 @@ export const MapComponent = ({ imageUrl, mapEntries }: Props) => {
     <p>
       Cursor coordinates: {coordinates.x}, {coordinates.y}
     </p>*/}
+    <SideBar leadDescription={"foo"} />
   </div>
 }
