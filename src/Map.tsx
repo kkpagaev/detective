@@ -3,8 +3,9 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
 import { Popup } from "./Popup";
-import { VisibilityContextProvider } from "./context/VisibilityContextProvider";
+import { VisibilityContextProvider, useVisibilityContext } from "./context/VisibilityContextProvider";
 import { SideBar } from "./SideBar";
+import { TypeAnimation } from "react-type-animation";
 
 // float 0 to 1
 type Coordinates = {
@@ -68,10 +69,10 @@ export const MapDot = (props: MapEntry) => {
       <div className="pr-2 pl-2 text-center relative z-30 bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
-      <button className={`w-10 h-10 transition-all mt-1 rounded-full ${colorVariants[color]}`} style={popupOpen?{
+      <button className={`w-10 h-10 transition-all mt-1 rounded-full ${colorVariants[color]}`} style={popupOpen ? {
         border: '2px solid black',
         boxShadow: '0 0 0 2px black',
-      }: {}} onClick={handleMouseClick} />
+      } : {}} onClick={handleMouseClick} />
       <VisibilityContextProvider isVisible={popupOpen}>
         <div className="relative">
           <div
@@ -79,10 +80,10 @@ export const MapDot = (props: MapEntry) => {
             style={{
               visibility: popupOpen ? 'visible' : 'hidden',
               left: coordinates.x <= 0.5 ? '-68%' : undefined,
-              right:coordinates.x > 0.5 ?  `82%` : undefined,
+              right: coordinates.x > 0.5 ? `82%` : undefined,
               // top: "-200%",
               // left: `18%`,
-              top:  `calc(${coordinates.y * 100}% - 1.25rem)`,
+              top: `calc(${coordinates.y * 100}% - 1.25rem)`,
             }} className="absolute z-50" >
             {props.popup}
           </div>
@@ -100,6 +101,9 @@ type QuestionPopupProps = {
 }
 export const QuestionPopup = (props: QuestionPopupProps) => {
   const { state, setState } = useAppContext();
+  const isVisible = useVisibilityContext();
+
+  const [typing, setTyping] = useState<boolean>(true);
 
   const [content, setContent] = useState<string>(props.content);
   const levelItemIndex = state.askedQuestions.findIndex(levelItem => levelItem.title === props.title);
@@ -184,9 +188,16 @@ export const QuestionPopup = (props: QuestionPopupProps) => {
   return <Popup title={props.title}>
     {props.image && <img className="w-1/2 m-auto" src={props.image} />}
     <p>
-      {content}
+      {isVisible || !typing ? <TypeAnimation key={content}
+        sequence={[
+          content,
+          () => setTyping(false)
+        ]}
+        speed={70}
+        repeat={0}
+      /> : content}
     </p>
-    <div>{questionsContent}</div>
+    { !typing && <div>{questionsContent}</div> }
   </Popup>
 }
 
