@@ -1,0 +1,17 @@
+.leads-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 500px;
+    background-color: rgba(220, 219, 219, 0.85);
+    border: #484949 solid 7px;
+    border-radius: 5px;
+    background: white;
+    padding: 25px;
+}
+
+.lead-header {
+    margin-bottom: 15px;
+}
