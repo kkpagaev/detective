@@ -52,15 +52,15 @@ export const questions: Array<LevelItem> = [
         questions: [
             {
                 question: "Кого ви підозрюєте та чому?",
-                answer: "Це Максим та Петро!",
+                answer: "Мене напружує Петро останнім часом.",
                 isAsked: false,
                 points: 0,
                 leadingQuestion: {
-                    question: "На яких підставах?",
-                    answer: "Вони часто спілкуються між собою щоб ніхто не чув. Ще в той день Макс передав червону флешку Петру.",
+                    question: "Чому?",
+                    answer: "Він завжди задає специфічні питання які поза його компетенцією. Наприклад, коли останній раз був бекап серверу.",
                     isAsked: false,
                     points: 10,
-                    lead: <p>Коли стався інцедент, <span className={textColorVariants.red}>Макс</span> передав якусь флешку <span className={textColorVariants.yellow}>Петру</span>.</p>
+                    lead: <p><span className={textColorVariants.yellow}>Петро</span> часто задає специфічні питання які не мали б його стосуватись, за свідченням <span className={textColorVariants.emerald}>Олександра</span>.</p>
                 }
             },
             {
@@ -76,19 +76,20 @@ export const questions: Array<LevelItem> = [
         questions: [
             {
                 question: "Кого ви підозрюєте та чому?",
-                answer: "Це Саня!",
+                answer: "На вашому місці — я би придивився до Софії.",
                 isAsked: false,
                 points: 0,
                 leadingQuestion: {
-                    question: "На яких підставах?",
-                    answer: "Він дуже довго відповідає на повідомлення. Це підозріло.",
+                    question: "Чому?",
+                    answer: "Вона явно веде свою гру. Маніпулятор ще той. Та і соціопат вона, скоріш за все.",
+                    lead: <p><span className={textColorVariants.yellow}>Петро</span> дав <span className={textColorVariants.orange}>Софії</span> не дуже гарну характеристику.</p>,
                     isAsked: false,
-                    points: 0
+                    points: 10
                 }
             },
             {
                 question: "Що ви помітили під час атаки?",
-                answer: "Все було як завжди.",
+                answer: "Я був на діловій зустрічі, нічого не бачив.",
                 isAsked: false,
                 points: 0
             }
@@ -102,11 +103,11 @@ export const questions: Array<LevelItem> = [
                 answer: "Я не міг би бути причетним, працював над іншим проектом у той час.",
                 isAsked: false,
                 points: 10,
-                lead: <p><span className={textColorVariants.red}>Макс</span> почав одразу заперечувати свою причетність.</p>,
+                lead: <p><span className={textColorVariants.red}>Максим</span> почав одразу заперечувати свою причетність.</p>,
             },
             {
                 question: "Що ви помітили під час атаки?",
-                answer: "Бачив певні дивні активності на серверах, але не зміг ідентифікувати звідки.",
+                answer: "Бачив дивні активності на сервері, але так і не зміг ідентифікувати їх.",
                 isAsked: false,
                 points: 0,
                 leadingQuestion: {
@@ -123,12 +124,13 @@ export const questions: Array<LevelItem> = [
         questions: [
             {
                 question: "Кого ви підозрюєте та чому?",
-                answer: "Софія трохи дивакувата.",
+                answer: "Макс трохи дивакуватий.",
                 isAsked: false,
                 points: 0,
                 leadingQuestion: {
                     question: "Чому ви так кажете?",
-                    answer: "Завжди кудись спішить, якщо з нею привітаєшся — вона коситься на тебе.",
+                    answer: "Завжди кудись спішить, якщо з ним привітаєшся — він коситься на тебе.",
+                    lead: <p><span className={textColorVariants.blue}>Віктор</span> відмітив підозрілу поведінку <span className={textColorVariants.red}>Максима</span>.</p>,
                     isAsked: false,
                     points: 0
                 }
@@ -152,13 +154,13 @@ export const questions: Array<LevelItem> = [
             },
             {
                 question: "Що ви помітили під час атаки?",
-                answer: "Побачила, як Максим виходив з серверної зони.",
+                answer: "Максим ходив із червоною флешкою. Під колір його футболки, хах. Я більше ніколи не бачило його в неї.",
                 isAsked: false,
                 points: 10,
-                lead: <p>У день інцеденту, <span className={textColorVariants.red}>Макс</span> відвідував серверну.</p>,
+                lead: <p><span className={textColorVariants.orange}>Софія</span> відмітила, що <span className={textColorVariants.red}>Максим</span> у день інциденту мав червону флешку яку він більше ніколи не приносив.</p>,
                 leadingQuestion: {
-                    question: "Куди він направлявся?",
-                    answer: "Наскільки я памʼятаю, до ліфта.",
+                    question: "Він передава її комусь?",
+                    answer: "Не памʼятаю, якщо чесно.",
                     isAsked: false,
                     points: 0
                 }
@@ -181,7 +183,7 @@ export const questions: Array<LevelItem> = [
                 points: 0,
                 leadingQuestion: {
                     question: "Як довго це продовжувалось?",
-                    answer: "Десь годину.",
+                    answer: "Десь півгодини.",
                     isAsked: false,
                     points: 0
                 }
@@ -193,15 +195,15 @@ export const questions: Array<LevelItem> = [
         questions: [
             {
                 question: "Кого ви підозрюєте та чому?",
-                answer: "Може Петро? Він завжди задає дивні питання.",
+                answer: "Я ніколи не довіряла Софії.",
                 isAsked: false,
                 points: 0,
                 leadingQuestion: {
-                    question: "Питання якого типу?",
-                    answer: "Типу, як працює сервер, чи не треба зробити бекап.",
+                    question: "Чим це викликано?",
+                    answer: "Вона карʼєристка, всіх тримає на відстані. Може використала когось аби продати цінну інформацію.",
                     isAsked: false,
                     points: 10,
-                    lead: <p><span className={textColorVariants.yellow}>Петро</span> любить задавати специфічні питання.</p>
+                    lead: <p><span className={textColorVariants.rose}>Юлія</span> відкликається про <span className={textColorVariants.orange}>Софію</span> як ненадійну особистість яка могла зманіпулювати кимось.</p>
                 }
             },
             {
@@ -230,7 +232,7 @@ export const questionsThree: Array<LevelItem> = [
                     points: 0,
                     leadingQuestion: {
                         question: "І як вам мала допомогти флешка у виявлені проблем з сервером?",
-                        answer: "Що?! Так це для бекапу сервера... Воно не знадобилось врешті-решт, але про всяк випадок треба було зробити...",
+                        answer: "Що?! Так це для бекапу сервера... Вона не знадобилось врешті-решт, але про всяк випадок треба було зробити...",
                         isAsked: false,
                         points: 10,
                         lead: <p><span className={textColorVariants.red}>Макс</span> явно був здивований питанням про флешку.</p>
@@ -248,7 +250,7 @@ export const questionsThree: Array<LevelItem> = [
                     answer: "Ну, Петро... Або Аня! Та будь-кого візьміть, всі підтвердять.",
                     isAsked: false,
                     points: 10,
-                    lead: <p><span className={textColorVariants.red}>Максим</span> першим згадав <span className={textColorVariants.yellow}>Петра</span> як особу яка може поручитись за нього.</p>,
+                    lead: <p><span className={textColorVariants.red}>Максим</span> згадав першим <span className={textColorVariants.yellow}>Петра</span> як особу яка може поручитись за нього.</p>,
                     leadingQuestion: {
                         question: "Кажуть, ви багато спілкуєтесь із Петром, хоча у вас не мало б бути багато професійної взаємодії?",
                         answer: "Та ми просто дружимо, не можна дружити людям з різних відділів?",
@@ -283,7 +285,7 @@ export const questionsThree: Array<LevelItem> = [
                             answer: "Мені передав його Макс, я попросила його зробити для мене приклад, щоб я використала у рекламі.",
                             points: 10,
                             isAsked: false,
-                            lead: <p><span className={textColorVariants.orange}>Софія</span> отримала запис від <span className={textColorVariants.red}>Максима</span>.</p>
+                            lead: <p>За словами <span className={textColorVariants.orange}>Софії</span>, вона отримала запис від <span className={textColorVariants.red}>Максима</span>.</p>
                         }
                     }
                 }

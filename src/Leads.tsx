@@ -27,7 +27,7 @@ export const LeadsList = () => {
     </p>;
     const initialContent = <>
         <div className="w-full h-1/8 text-2xl text-center lead-header">Зачіпки</div>
-        <ul className="w-full h-5/8 flex flex-col justify-start">
+        <ul className="w-full h-5/8 flex flex-col justify-start text-sm mb-2">
             {state.leads.map((lead, index) => {
             return <li key={index}>
                 {lead}
