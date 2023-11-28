@@ -4,8 +4,8 @@ import { useAppContext } from "./context/app-context";
 import { Question, QUESTION_LIMIT } from "./Question";
 import { Popup } from "./Popup";
 import { VisibilityContextProvider, useVisibilityContext } from "./context/VisibilityContextProvider";
-import { SideBar } from "./SideBar";
 import { TypeAnimation } from "react-type-animation";
+import { ColorContextProvider } from "./context/ColorContext";
 
 // float 0 to 1
 type Coordinates = {
@@ -27,14 +27,14 @@ export const MapDot = (props: MapEntry) => {
   const color = props.color ? props.color : 'black';
 
   const colorVariants: any = {
-    blue: 'bg-blue-500',
-    sky: 'bg-sky-600',
-    red: 'bg-red-500',
-    yellow: 'bg-yellow-400',
-    rose: 'bg-rose-300',
-    emerald: 'bg-emerald-300',
-    orange: 'bg-orange-400',
-    black: 'bg-black',
+    blue: 'blue-500',
+    sky: 'sky-600',
+    red: 'red-500',
+    yellow: 'yellow-400',
+    rose: 'rose-300',
+    emerald: 'emerald-300',
+    orange: 'orange-400',
+    black: 'black',
   }
 
   const [popupOpen, setPopupOpen] = useState(false);
@@ -61,7 +61,7 @@ export const MapDot = (props: MapEntry) => {
     };
   }, [wrappedRef, popupOpen]);
 
-  return <div >
+  return <ColorContextProvider color={colorVariants[color]}>
     <div className="absolute justify-center" style={{
       left: `calc(${coordinates.x * 100}% - 1.25rem)`,
       top: `calc(${coordinates.y * 100}% - 1.25rem)`,
@@ -69,7 +69,7 @@ export const MapDot = (props: MapEntry) => {
       <div className="pr-2 pl-2 text-center relative z-30 bg-gray-100 border-gray-500 border border-10" style={{
         left: "calc(-50% + 1.25rem)",
       }}>{props.name}</div>
-      <button className={`w-10 h-10 transition-all mt-1 rounded-full ${colorVariants[color]}`} style={popupOpen ? {
+      <button className={`w-10 h-10 transition-all mt-1 rounded-full bg-${colorVariants[color]}`} style={popupOpen ? {
         border: '2px solid black',
         boxShadow: '0 0 0 2px black',
       } : {}} onClick={handleMouseClick} />
@@ -90,7 +90,7 @@ export const MapDot = (props: MapEntry) => {
         </div>
       </VisibilityContextProvider>
     </div>
-  </div>
+  </ColorContextProvider>
 }
 
 type QuestionPopupProps = {
