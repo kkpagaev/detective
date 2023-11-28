@@ -11,7 +11,7 @@ export const Slider = () => {
 
   return <div>
     <div className="relative mb-6">
-      <label htmlFor="steps-range" className="block mb-2 text-sm font-medium text-gray-900 ">Range steps</label>
+      <label htmlFor="steps-range" className="block mb-2 text-lg font-medium text-gray-900 ">Оберіть час перегляду</label>
       <input onChange={(e) => setTime(+e.target.value)} value={state.time} id="steps-range" type="range" min="0" max="8" step="0.5" className="w-full h-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
       <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6"
         style={{

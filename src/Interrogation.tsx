@@ -111,7 +111,6 @@ export type InterrogationEntry = {
     name: string
 }
 type Props = {
-    imageUrl: string,
     mapEntries: Array<InterrogationEntry>
 }
 export const InterrogationComponent = ({ mapEntries }: Props) => {
