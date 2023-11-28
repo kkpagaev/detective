@@ -5,6 +5,7 @@ import officeMap from "./assets/office2.png"
 import { InterrogationComponent, InterrogationEntry } from "./Interrogation";
 import { Slider } from "./Slider";
 import { LeadsList } from "./Leads";
+import { Intro } from "./Introduction";
 
 export const Main = () => {
   const { loaded, state } = useAppContext();
@@ -13,6 +14,10 @@ export const Main = () => {
 
   if (!loaded) {
     return <div>Loading...</div>
+  }
+
+  if (state.level === 0) {
+    return <Intro />
   }
 
   if (state.level === 3) {

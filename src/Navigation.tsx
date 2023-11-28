@@ -15,6 +15,14 @@ export const Navigation = ({ onNewLevel }: Props) => {
 
   return <div className="fixed bottom-0 w-full z-50">
     <div className="container m-auto flex justify-end gap-2">
+      {
+        canGoToTheNextLevel &&
+        <div>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={onNewLevel}>
+            Новий рівень
+          </button>
+        </div>
+      }
       <button className="bg-yellow-500 transition-all hover:bg-yellow-700 text-zinc-800 font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setNoteVisible(!noteVisible)}>
         Зачіпки
       </button>
@@ -24,14 +32,6 @@ export const Navigation = ({ onNewLevel }: Props) => {
       <button className="bg-red-500 transition-all hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={resetState}>
         RESET STATE
       </button>
-      {
-        canGoToTheNextLevel &&
-        <div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={onNewLevel}>
-            Новий рівень
-          </button>
-        </div>
-      }
       <div className="absolute transition-all duration-300 z-50" style={{
         bottom: noteVisible ? 0 : "-32rem"
       }}>

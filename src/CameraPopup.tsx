@@ -7,8 +7,9 @@ import catVideo from "./assets/cat.mp4"
 import alexVideo from "./assets/server_alex.mp4"
 import maxVideo from "./assets/server_max.mp4"
 import sofaVideo from "./assets/elevator_sofa.mp4"
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useVisibilityContext } from "./context/VisibilityContextProvider";
+import { textColorVariants } from "./Question";
 
 
 const cameraNames = {
@@ -43,7 +44,7 @@ const cameraStates: Record<CameraName, Record<number, {
   image?: string,
   needed?: boolean,
   video?: string,
-  lead?: string
+  lead?: ReactNode
   // leadIfLogsAreChosen?: string,
   // textIfLogsAreChosen?: string,
 }>> = {
@@ -53,14 +54,14 @@ const cameraStates: Record<CameraName, Record<number, {
     },
     9: {
         text: "13:35 - Софія покидає офіс",
-        lead: "13:35 - Софія одразу покинула офіс після викрадення інформації з серверу",
+        lead: <p>13:35 - <span className={textColorVariants.orange}>Софія</span> одразу покинула офіс після викрадення інформації з серверу</p>,
         video: sofaVideo,
         needed: true
     },
     15: {
       video: catVideo,
       text: "cat vibing",
-      lead: "cat vibing really hard",
+      lead: <p>cat vibing really hard</p>,
       needed: true
     }
   },
@@ -80,8 +81,8 @@ const cameraStates: Record<CameraName, Record<number, {
         needed: true
     },
     9: {
-        text: "13:30 - Чоловік в червоній сорочці вставив флешку в сервер",
-        lead: "13:30 - Чоловік в червоній сорочці вставив флешку в сервер",
+        text: "13:30 - Чоловік в червоній сорочці, схожий на Максима, вставив флешку в сервер",
+        lead: <p>13:30 - Чоловік в червоній сорочці, схожий на <span className={textColorVariants.red}>Максима</span>, вставив флешку в сервер</p>,
         video: maxVideo,
         needed: true
     },

@@ -15,7 +15,7 @@ export const Notes = ({ close }: Props) => {
         Зачіпки
       </h2>
       <div className="flex flex-col gap-4">
-        {state.leads.map(lead => <p>{lead}</p>)}
+        {state.leads}
       </div>
     </div>
   </div>

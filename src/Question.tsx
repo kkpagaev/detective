@@ -1,9 +1,22 @@
+import { ReactNode } from "react"
+
+export const textColorVariants: any = {
+    blue: 'text-blue-500',
+    sky: 'text-sky-600',
+    red: 'text-red-500',
+    yellow: 'text-yellow-400',
+    rose: 'text-rose-300',
+    emerald: 'text-emerald-300',
+    orange: 'text-orange-400',
+    black: 'text-black',
+  }
+
 export type Question = {
     question: string,
     answer: string,
     isAsked: boolean,
     points: number,
-    lead?: string,
+    lead?: ReactNode,
     leadingQuestion?: Question
 }
 
@@ -47,7 +60,7 @@ export const questions: Array<LevelItem> = [
                     answer: "Вони часто спілкуються між собою щоб ніхто не чув. Ще в той день Макс передав червону флешку Петру.",
                     isAsked: false,
                     points: 10,
-                    lead: "Коли стався інцедент, Макс передав якусь флешку Петру."
+                    lead: <p>Коли стався інцедент, <span className={textColorVariants.red}>Макс</span> передав якусь флешку <span className={textColorVariants.yellow}>Петру</span>.</p>
                 }
             },
             {
@@ -89,7 +102,7 @@ export const questions: Array<LevelItem> = [
                 answer: "Я не міг би бути причетним, працював над іншим проектом у той час.",
                 isAsked: false,
                 points: 10,
-                lead: "Макс почав одразу заперечувати свою причетність.",
+                lead: <p><span className={textColorVariants.red}>Макс</span> почав одразу заперечувати свою причетність.</p>,
             },
             {
                 question: "Що ви помітили під час атаки?",
@@ -142,7 +155,7 @@ export const questions: Array<LevelItem> = [
                 answer: "Побачила, як Максим виходив з серверної зони.",
                 isAsked: false,
                 points: 10,
-                lead: "У день інцеденту, Макс відвідував серверну.",
+                lead: <p>У день інцеденту, <span className={textColorVariants.red}>Макс</span> відвідував серверну.</p>,
                 leadingQuestion: {
                     question: "Куди він направлявся?",
                     answer: "Наскільки я памʼятаю, до ліфта.",
@@ -188,7 +201,7 @@ export const questions: Array<LevelItem> = [
                     answer: "Типу, як працює сервер, чи не треба зробити бекап.",
                     isAsked: false,
                     points: 10,
-                    lead: "Петро любить задавати специфічні питання."
+                    lead: <p><span className={textColorVariants.yellow}>Петро</span> любить задавати специфічні питання.</p>
                 }
             },
             {
@@ -220,7 +233,7 @@ export const questionsThree: Array<LevelItem> = [
                         answer: "Що?! Так це для бекапу сервера... Воно не знадобилось врешті-решт, але про всяк випадок треба було зробити...",
                         isAsked: false,
                         points: 10,
-                        lead: "Макс явно був здивований питанням про флешку."
+                        lead: <p><span className={textColorVariants.red}>Макс</span> явно був здивований питанням про флешку.</p>
                     }
                 }
             },
@@ -229,13 +242,13 @@ export const questionsThree: Array<LevelItem> = [
                 answer: "Як?.. Ні, я не був ні з ким у змові. Точніше я взагалі не винний!",
                 isAsked: false,
                 points: 10,
-                lead: "Питання про співучасника вибило Максима з рівноваги",
+                lead: <p>Питання про співучасника вибило <span className={textColorVariants.red}>Максима</span> з рівноваги</p>,
                 leadingQuestion: {
                     question: "Є особа яка може підтвердити ваші слова?",
                     answer: "Ну, Петро... Або Аня! Та будь-кого візьміть, всі підтвердять.",
                     isAsked: false,
                     points: 10,
-                    lead: "Максим першим згадав Петра як особу яка може поручитись за нього.",
+                    lead: <p><span className={textColorVariants.red}>Максим</span> першим згадав <span className={textColorVariants.yellow}>Петра</span> як особу яка може поручитись за нього.</p>,
                     leadingQuestion: {
                         question: "Кажуть, ви багато спілкуєтесь із Петром, хоча у вас не мало б бути багато професійної взаємодії?",
                         answer: "Та ми просто дружимо, не можна дружити людям з різних відділів?",
@@ -259,7 +272,7 @@ export const questionsThree: Array<LevelItem> = [
                     answer: "Показала на прикладі роботу нашого голосового астистенту.",
                     isAsked: false,
                     points: 10,
-                    lead: "Невдовзі після інцеденту, Софія використала у рекламі приклад роботи голосового асистенту. Записи роботи асистенту зберігались на сервері.",
+                    lead: <p>Невдовзі після інцеденту, <span className={textColorVariants.orange}>Софія</span> використала у рекламі приклад роботи голосового асистенту. Записи роботи асистенту зберігались на сервері.</p>,
                     leadingQuestion: {
                         question: "Ви усвідомлюєте, що на сервері зберігались записи роботи голосового асистенту з користувачами, які є конфіденційними?",
                         answer: "Що?! Я навіть і не задумувалась про це... Але я нічого не викрадала, я й не змогла б з моїми навичками",
@@ -270,7 +283,7 @@ export const questionsThree: Array<LevelItem> = [
                             answer: "Мені передав його Макс, я попросила його зробити для мене приклад, щоб я використала у рекламі.",
                             points: 10,
                             isAsked: false,
-                            lead: "Софія отримала запис від Максима."
+                            lead: <p><span className={textColorVariants.orange}>Софія</span> отримала запис від <span className={textColorVariants.red}>Максима</span>.</p>
                         }
                     }
                 }
@@ -280,7 +293,7 @@ export const questionsThree: Array<LevelItem> = [
                 answer: "Не памʼятаю... Приблизно о 13.",
                 isAsked: false,
                 points: 10,
-                lead: "Софія підтвердила час коли покинула офіс",
+                lead: <p><span className={textColorVariants.orange}>Софія</span> підтвердила час коли покинула офіс</p>,
                 leadingQuestion: {
                     question: "У нас є свідчення того, що інцидент стався за декілька хвилин до того як ви покинули офіс.",
                     answer: "Бувають різні збіги обставин. Я могла собі дозволити піти з офісу в цей час та допрацювати з дому.",

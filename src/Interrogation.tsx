@@ -48,7 +48,7 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
 
         newPoints += currentQuestionContent.leadingQuestion.points;
 
-        const newLead = props.questions[buttonIndex].leadingQuestion?.lead;
+        const newLead = currentQuestionContent.leadingQuestion?.lead;
         if (newLead) {
           newLeads.push(newLead);
         }
@@ -101,7 +101,8 @@ export const InterrogationPopup = (props: InterrogationPopupProps) => {
   return <Popup title={props.title}>
     {props.image && <img className="w-1/2 m-auto" src={props.image} />}
     <p>
-      <TypeAnimation key={content}
+      <TypeAnimation 
+        key={content}
         sequence={[
           content,
         ]}

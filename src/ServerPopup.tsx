@@ -1,6 +1,7 @@
 import { Popup } from "./Popup"
 import { useAppContext } from "./context/app-context"
 import logsVideo from "./assets/logs.webm"
+import { textColorVariants } from "./Question"
 
 
 const ServerAudio = () => {
@@ -21,7 +22,7 @@ const ServerChoise = () => {
 
   const chooseVideo = () => {
     setState({ ...state, serverRoomChoise: "video", points: state.points + 10,
-      leads: [...state.leads, "13:30 - Максим заходив в серверну кімнату"]
+      leads: [...state.leads, <p>13:30 - <span className={textColorVariants.red}>Максим</span> заходив в серверну кімнату</p>]
     })
   }
 

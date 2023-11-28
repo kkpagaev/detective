@@ -1,22 +1,31 @@
 import { ReactNode } from "react"
 import { useAppContext } from "./context/app-context"
+import { getLevelName } from "./SideBar"
 
 type LevelHelp = {
   title: string,
   content: ReactNode
 }
 export const levelHelp: Record<number, LevelHelp> = {
+  0: {
+    title: "",
+    content: ""
+  },
   1: {
-    title: "Допит персоналу",
+    title: getLevelName(1),
     content: "На цьому етапі вам потрібно допитати персонал, дізнатися хто чим займався, що помітили, кого підозрюєте. Вам потрібно допитати кожного робітника компанії в цьому відділі."
   },
   2: {
-    title: "Перегляд відеозаписів з камер",
+    title: getLevelName(2),
     content: "Ви можете переглянути відеозаписи в день атаки, а також подивитися додаткову інформацію на сервері. За допомогою слайдеру ви можете вибрати час "
   },
   3: {
-    title: "Додатковий допит Софії і Максима",
+    title: getLevelName(3),
     content: "//@TODO"
+  },
+  4: {
+    title: "",
+    content: ""
   }
 }
 type Props = {

@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { ReactNode, createContext, useContext } from "react";
 import { AskedLevelItem, AskedLevelItemThree } from "../Question";
 import { CameraName } from "../CameraPopup";
 import { getLevelName } from "../SideBar";
@@ -9,7 +9,7 @@ export type AppState = {
   level: number
   levelName: string
   points: number
-  leads: Array<string>
+  leads: Array<ReactNode>
   serverRoomChoise?: "audio" | "video",
   visitedCameras: Record<CameraName, Array<number>>
   askedQuestions: Array<AskedLevelItem>
@@ -25,7 +25,7 @@ interface AppContextData {
 }
 
 export const defaultState = <AppState>{
-  level: 1,
+  level: 0,
   levelName: getLevelName(1),
   time: 0,
   points: 0,
