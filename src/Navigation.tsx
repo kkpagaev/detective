@@ -20,13 +20,13 @@ export const Navigation = () => {
 
   return <div className="fixed bottom-0 w-full">
     <div className="container m-auto flex justify-end gap-2">
-      <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setNoteVisible(!noteVisible)}>
+      <button className="bg-yellow-500 transition-all hover:bg-yellow-700 text-zinc-800 font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setNoteVisible(!noteVisible)}>
         Зачіпки
       </button>
-      <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setHelpVisible(!helpVisible)}>
+      <button className="bg-red-500 transition-all hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={() => setHelpVisible(!helpVisible)}>
         Допомога
       </button>
-      <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={resetState}>
+      <button className="bg-red-500 transition-all hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" onClick={resetState}>
         RESET STATE
       </button>
       {

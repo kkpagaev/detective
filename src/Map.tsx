@@ -83,7 +83,9 @@ export const MapDot = (props: MapEntry) => {
               right: coordinates.x > 0.5 ? `82%` : undefined,
               // top: "-200%",
               // left: `18%`,
-              top: `calc(${coordinates.y * 100}% - 1.25rem)`,
+              // top: `calc(${coordinates.y * 100}% - 1.25rem)`,
+              top: coordinates.y < 0.7 ? `calc(${coordinates.y * 100}% - 1.25rem)` : undefined,
+              bottom: coordinates.y >= 0.7 ? `calc(${coordinates.y * 100}% + 1.25rem)` : undefined,
             }} className="absolute z-50" >
             {props.popup}
           </div>
