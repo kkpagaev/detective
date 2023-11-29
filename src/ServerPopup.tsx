@@ -75,10 +75,11 @@ export const ServerPopup = () => {
 
       console.log(state.serverRoomChoise)
       return <Popup title="Сервер">
+    {state.serverRoomChoise == undefined &&
         <p>
           {"Виберіть що подивитися на сервері"}
-        </p>
-        {state.serverRoomChoise == undefined && <ServerChoise />}
+        </p>}
+    {state.serverRoomChoise == undefined && <ServerChoise />}
         {state.serverRoomChoise == "audio" && <ServerAudio />}
         {state.serverRoomChoise == "video" && <ServerVideo />}
       </Popup>
